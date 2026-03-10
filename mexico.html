@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mexico: Especialistas en Salud Mental 2000-2026 | Plan Nacional Salud Mental</title>
+<meta name="description" content="Mexico analisis de psiquiatras 2.5/100k, psicologos 22/100k y neurologos 2.0/100k. Plan Nacional de Salud Mental, IMSS, SSA. Serie temporal 2000-2026.">
+<meta name="keywords" content="Mexico, salud mental, psiquiatras, psicologos, neurologos, IMSS, SSA, Plan Nacional Salud Mental">
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#006847;--secondary:#ce1126;--light:#e8f5e9}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',system-ui,sans-serif;background:#fafafa;line-height:1.7;color:#212121}
+header{background:linear-gradient(135deg,#006847,#004d36);color:#fff;padding:2.5rem 2rem;text-align:center;border-bottom:8px solid var(--secondary)}
+header h1{font-size:2rem}
+nav{background:#fff;border-bottom:3px solid var(--primary);padding:.7rem;position:sticky;top:0;z-index:100;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+nav a{color:var(--primary);text-decoration:none;font-weight:600;font-size:.85rem;padding:.3rem .8rem;border-radius:4px}nav a:hover{background:var(--light)}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+.section{background:#fff;border-radius:12px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.section h2{color:var(--primary);font-size:1.7rem;margin-bottom:1.5rem;border-bottom:3px solid var(--secondary);padding-bottom:.5rem}
+.chart-box{height:400px;margin:1.5rem 0}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1.2rem;margin:1.5rem 0}
+.kpi{background:linear-gradient(135deg,var(--primary),#008c60);color:#fff;border-radius:10px;padding:1.5rem;text-align:center}
+.kpi .value{font-size:2rem;font-weight:700}.kpi .label{font-size:.82rem;opacity:.9;margin-top:.3rem}
+.finding{background:var(--light);border-left:4px solid var(--primary);padding:1rem 1.5rem;border-radius:0 8px 8px 0;margin:1rem 0}
+.finding strong{color:var(--primary)}
+.citation-box{background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:1.5rem;font-family:monospace;font-size:.83rem;white-space:pre-wrap}
+footer{background:#006847;color:#fff;text-align:center;padding:1.5rem;border-top:4px solid var(--secondary)}
+footer a{color:#a5d6a7;text-decoration:none}
+.np{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.np a{background:rgba(255,255,255,.15);color:#fff;padding:.3rem .9rem;border-radius:20px;text-decoration:none;font-size:.83rem}
+</style>
+</head>
+<body>
+<header>
+<p style="opacity:.7;font-size:.85rem;margin-bottom:.3rem">Perfil de Pais | Mexico | 2000-2026</p>
+<h1>🇲🇽 Mexico: Salud Mental en la Tercera Economia de Iberoamerica</h1>
+<p style="opacity:.9;margin-top:.4rem">130 millones de habitantes, sistema tripartito y crecimiento moderado en especialistas de salud mental</p>
+<div class="np">
+<a href="index.html">Dashboard</a><a href="brasil.html">Brasil</a><a href="argentina.html">Argentina</a><a href="comparisons.html">Comparar</a>
+</div>
+</header>
+<nav>
+<a href="#perfil">Perfil</a><a href="#sistema">Sistema</a><a href="#tendencias">Tendencias</a><a href="#hallazgos">Hallazgos</a><a href="#citar">Citar</a>
+</nav>
+<div class="container">
+<div class="section" id="perfil">
+<h2><i class="fas fa-id-card"></i> Perfil: Mexico en Salud Mental (2024)</h2>
+<div class="kpi-grid">
+<div class="kpi"><div class="value">2.5</div><div class="label">Psiquiatras/100k (2024)</div></div>
+<div class="kpi"><div class="value">22.0</div><div class="label">Psicologos/100k (2024)</div></div>
+<div class="kpi"><div class="value">2.0</div><div class="label">Neurologos/100k (2024)</div></div>
+<div class="kpi"><div class="value">+150%</div><div class="label">Crecimiento psiq. 2001-2024</div></div>
+<div class="kpi"><div class="value">&gt;150.000</div><div class="label">Psicologos registrados</div></div>
+</div>
+<p style="margin-top:1rem">Mexico, con 130 millones de habitantes, es la tercera economia de Iberoamerica. Con 2.5 psiquiatras/100k se acerca pero no alcanza la meta OMS. El sistema de salud tripartito (IMSS, ISSSTE, SSA/IMSS-Bienestar) fragmenta la atencion y genera inequidades significativas. El Programa de Accion en Salud Mental (PASM) y el Plan Nacional 2023-2024 buscan fortalecer la capacidad de atencion.</p>
+</div>
+<div class="section" id="sistema">
+<h2><i class="fas fa-hospital"></i> Sistema de Salud Mental en Mexico</h2>
+<div class="finding"><strong>IMSS — Instituto Mexicano del Seguro Social:</strong> Cubre aproximadamente el 40% de la poblacion trabajadora formal. Cuenta con servicios de psiquiatria y psicologia en sus clinicas y hospitales de zona. La demanda supera frecuentemente la capacidad instalada.</div>
+<div class="finding"><strong>Hospitales Psiquiatricos Federales:</strong> Mexico mantiene una red de hospitales psiquiatricos federales (Fray Bernardino Alvarez, Juan N. Navarro, La Castaneda-sustituto) con capacidad de internamiento, aunque en proceso de reforma hacia modelo comunitario.</div>
+<div class="finding"><strong>CONASAMA — Consejo Nacional de Salud Mental:</strong> Coordina las politicas nacionales. El Plan de Accion en Salud Mental 2022-2024 establece metas especificas de incremento de especialistas, integracion en APS y reduccion de la brecha de tratamiento.</div>
+<div class="finding"><strong>Desigualdad urbano-rural:</strong> La Ciudad de Mexico y Monterrey concentran el 60-70% de los psiquiatras. Estados como Chiapas, Guerrero y Oaxaca tienen densidades de 0.3-0.7 psiquiatras/100k, similares a Centroamerica.</div>
+</div>
+<div class="section" id="tendencias">
+<h2><i class="fas fa-chart-line"></i> Evolucion 2001-2024</h2>
+<div id="chart-trend" class="chart-box"></div>
+</div>
+<div class="section" id="hallazgos">
+<h2><i class="fas fa-lightbulb"></i> Hallazgos Clave</h2>
+<div class="finding"><strong>Crecimiento universitario:</strong> Mexico tiene mas de 500 programas de psicologia en universidades publicas y privadas. La UNAM y el IPN tienen programas de posgrado en psicologia clinica y psiquiatria de alto nivel. El crecimiento de psicologos ha sido mas acelerado que el de psiquiatras.</div>
+<div class="finding"><strong>Ley General de Salud Mental (2022):</strong> La nueva LGSM 2022 incorporo el enfoque de derechos humanos, prohibio tratamientos coercitivos y establecio plazos para crear redes de salud mental comunitaria con psicologos, psiquiatras y trabajadores sociales.</div>
+<div class="finding"><strong>Brecha norte-sur:</strong> Los estados fronterizos del norte (Nuevo Leon, Baja California, Sonora) tienen densidades 3-5 veces mayores que los estados del sur (Chiapas, Oaxaca, Guerrero), correlacionando con PIB per capita estatal.</div>
+</div>
+<div class="section" id="citar">
+<h2><i class="fas fa-quote-right"></i> Citar</h2>
+<div class="citation-box">de la Serna, J. M. (2026). Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica (2000-2026) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.18937912</div>
+</div>
+</div>
+<footer>
+<p>🇲🇽 Mexico | Salud Mental | DOI: <a href="https://doi.org/10.5281/zenodo.18937912">10.5281/zenodo.18937912</a></p>
+<p style="margin-top:.4rem"><a href="index.html">Dashboard</a> | <a href="brasil.html">Brasil</a> | <a href="argentina.html">Argentina</a> | Juan Moises de la Serna | UNIR | 2026</p>
+</footer>
+<script>
+const years=[2001,2005,2011,2014,2017,2020,2024];
+const MX={psiq:[1.0,1.2,1.6,1.8,2.0,2.2,2.5],psic:[5,7,10,13,16,19,22],neuro:[0.6,0.8,1.1,1.3,1.5,1.7,2.0]};
+Plotly.newPlot('chart-trend',[
+  {type:'scatter',mode:'lines+markers',name:'Psiquiatras',x:years,y:MX.psiq,line:{color:'#006847',width:3},marker:{size:8}},
+  {type:'scatter',mode:'lines+markers',name:'Psicologos (÷10)',x:years,y:MX.psic.map(v=>v/10),line:{color:'#ce1126',width:3},marker:{size:8}},
+  {type:'scatter',mode:'lines+markers',name:'Neurologos',x:years,y:MX.neuro,line:{color:'#888',width:2},marker:{size:7}},
+  {type:'scatter',mode:'lines',name:'Meta OMS Psiq',x:[2001,2024],y:[3,3],line:{color:'red',width:2,dash:'dash'}}
+],{
+  title:{text:'Mexico: Evolucion Especialistas/100k (2001-2024)',font:{size:15,color:'#006847'}},
+  xaxis:{title:'Ano'},yaxis:{title:'Especialistas/100k'},height:400,
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+</script>
+</body>
+</html>
