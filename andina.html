@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Region Andina: Especialistas en Salud Mental 2000-2026 | Colombia, Peru, Ecuador, Bolivia, Venezuela</title>
+<meta name="description" content="Analisis de psiquiatras, psicologos y neurologos en la Region Andina: Colombia, Peru, Ecuador, Bolivia y Venezuela. Datos 2000-2026.">
+<meta name="keywords" content="Region Andina, salud mental, psiquiatras, Colombia, Peru, Ecuador, Bolivia, Venezuela, Atlas OMS">
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#1b5e20;--secondary:#2e7d32;--light:#e8f5e9}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#fafafa;line-height:1.7;color:#212121}
+header{background:linear-gradient(135deg,#1b5e20,#2e7d32);color:#fff;padding:2.5rem 2rem;text-align:center}
+header h1{font-size:1.9rem}
+nav{background:#fff;border-bottom:3px solid var(--primary);padding:.7rem;position:sticky;top:0;z-index:100;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+nav a{color:var(--primary);text-decoration:none;font-weight:600;font-size:.85rem;padding:.3rem .8rem;border-radius:4px}
+nav a:hover{background:var(--light)}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+.section{background:#fff;border-radius:12px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.section h2{color:var(--primary);font-size:1.7rem;margin-bottom:1.5rem;border-bottom:3px solid var(--secondary);padding-bottom:.5rem}
+.chart-box{height:460px;margin:1.5rem 0}
+.country-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin:1.5rem 0}
+.cc{border-radius:12px;padding:1.5rem;color:#fff}
+.cc.pos{background:linear-gradient(135deg,#1b5e20,#2e7d32)}
+.cc.mid{background:linear-gradient(135deg,#33691e,#558b2f)}
+.cc.neg{background:linear-gradient(135deg,#b71c1c,#c62828)}
+.cc h3{font-size:1rem;margin-bottom:.7rem}
+.cc .sv{font-size:1.4rem;font-weight:700}
+.cc .sl{font-size:.78rem;opacity:.9}
+.finding{background:var(--light);border-left:4px solid var(--primary);padding:1rem 1.5rem;border-radius:0 8px 8px 0;margin:1rem 0}
+.finding strong{color:var(--primary)}
+.citation-box{background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:1.5rem;font-family:monospace;font-size:.83rem;white-space:pre-wrap}
+footer{background:var(--primary);color:#fff;text-align:center;padding:1.5rem}
+footer a{color:#a5d6a7;text-decoration:none}
+.np{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.np a{background:rgba(255,255,255,.15);color:#fff;padding:.3rem .9rem;border-radius:20px;text-decoration:none;font-size:.83rem}
+</style>
+</head>
+<body>
+<header>
+<p style="opacity:.7;font-size:.85rem;margin-bottom:.3rem">Region Andina | 2000-2026</p>
+<h1><i class="fas fa-mountain"></i> Region Andina: Especialistas en Salud Mental</h1>
+<p style="opacity:.9;margin-top:.4rem;font-size:.95rem">Colombia, Peru, Ecuador, Bolivia y Venezuela — Entre el progreso y la regresion</p>
+<div class="np">
+<a href="index.html">Dashboard</a>
+<a href="cono-sur.html">Cono Sur</a>
+<a href="centroamerica.html">Centroamerica</a>
+<a href="comparisons.html">Comparaciones</a>
+</div>
+</header>
+<nav>
+<a href="#resumen">Resumen</a>
+<a href="#paises">Por Pais</a>
+<a href="#tendencias">Tendencias</a>
+<a href="#venezuela">Venezuela</a>
+<a href="#hallazgos">Hallazgos</a>
+<a href="#citar">Citar</a>
+</nav>
+<div class="container">
+<div class="section" id="resumen">
+<h2><i class="fas fa-map"></i> Vision General: Region Andina</h2>
+<p>La Region Andina presenta una situacion heterogenea: Colombia, Peru y Ecuador muestran crecimiento positivo sostenido, impulsado por reformas de salud y expansion universitaria. Bolivia enfrenta desafios por su menor nivel de ingreso pero tambien crece. Venezuela representa el caso excepcional de regresion, con emigracion masiva de especialistas.</p>
+<div class="country-grid">
+<div class="cc pos"><h3>Colombia</h3><div class="sv">2.5</div><div class="sl">Psiquiatras/100k (2024) +190%</div><br><div class="sv">18.0</div><div class="sl">Psicologos/100k</div></div>
+<div class="cc pos"><h3>Peru</h3><div class="sv">2.0</div><div class="sl">Psiquiatras/100k (2024) +220%</div><br><div class="sv">15.0</div><div class="sl">Psicologos/100k</div></div>
+<div class="cc mid"><h3>Ecuador</h3><div class="sv">1.6</div><div class="sl">Psiquiatras/100k (2024)</div><br><div class="sv">13.0</div><div class="sl">Psicologos/100k</div></div>
+<div class="cc mid"><h3>Bolivia</h3><div class="sv">1.0</div><div class="sl">Psiquiatras/100k (2024)</div><br><div class="sv">8.0</div><div class="sl">Psicologos/100k</div></div>
+<div class="cc neg"><h3>Venezuela</h3><div class="sv">0.9</div><div class="sl">Psiquiatras/100k (2024) — DESCENSO</div><br><div class="sv">4.0</div><div class="sl">Psicologos/100k</div></div>
+</div>
+</div>
+<div class="section" id="paises">
+<h2><i class="fas fa-chart-bar"></i> Comparacion 2024</h2>
+<div id="chart-countries" class="chart-box"></div>
+</div>
+<div class="section" id="tendencias">
+<h2><i class="fas fa-chart-line"></i> Evolucion Psiquiatras/100k (2001-2024)</h2>
+<div id="chart-trends" class="chart-box"></div>
+</div>
+<div class="section" id="venezuela">
+<h2><i class="fas fa-chart-area"></i> Venezuela: El Caso Excepcional</h2>
+<div id="chart-vzla" class="chart-box" style="height:380px"></div>
+<div class="finding"><strong>Venezuela — unica regresion documentada:</strong> Venezuela es el unico pais iberoamericano con reduccion en densidad de psiquiatras (de 1.5/100k en 2014 a 0.9/100k en 2024). La emigracion de medicos especializados —estimada en 30.000 medicos entre 2015-2024 por la OPS— ha diezmado el sistema de salud mental, junto con el deterioro de infraestructura hospitalaria y el colapso del financiamiento publico.</div>
+</div>
+<div class="section" id="hallazgos">
+<h2><i class="fas fa-lightbulb"></i> Hallazgos Andinos</h2>
+<div class="finding"><strong>Colombia — Reformas como motor:</strong> La Ley 1616 de Salud Mental (2013) y su decreto reglamentario impulsaron la incorporacion de psiquiatras y psicologos en el sistema de salud obligatorio. El crecimiento de 190% en 20 anos refleja inversion real en recursos humanos.</div>
+<div class="finding"><strong>Peru — Ley de Salud Mental 2019:</strong> La Ley 30947 creo el marco para la implementacion de Centros de Salud Mental Comunitarios (CSMC) en todo el territorio. Peru fue el pais con mayor crecimiento relativo (+220%) de la region andina.</div>
+<div class="finding"><strong>Bolivia — Barreras estructurales:</strong> Con el PIB per capita mas bajo de la region andina y un sistema de salud fragmentado, Bolivia avanza mas lentamente. La alta proporcion de poblacion rural e indigena dificulta la distribucion equitativa de especialistas urbanos.</div>
+<div class="finding"><strong>Ecuador — Constitucion de Montecristi:</strong> La Constitucion de 2008 garantiza la salud mental como derecho fundamental. El sistema publico (IESS, MSP) ha incorporado psicologos en centros de salud de primer nivel, impulsando el crecimiento.</div>
+</div>
+<div class="section" id="citar">
+<h2><i class="fas fa-quote-right"></i> Citar</h2>
+<div class="citation-box">de la Serna, J. M. (2026). Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica (2000-2026) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.18937912</div>
+</div>
+</div>
+<footer>
+<p>Region Andina | Salud Mental | DOI: <a href="https://doi.org/10.5281/zenodo.18937912">10.5281/zenodo.18937912</a></p>
+<p style="margin-top:.4rem"><a href="index.html">Dashboard</a> | <a href="cono-sur.html">Cono Sur</a> | <a href="centroamerica.html">Centroamerica</a> | Juan Moises de la Serna | UNIR | 2026</p>
+</footer>
+<script>
+const years=[2001,2005,2011,2014,2017,2020,2024];
+const and=[
+  {c:'Colombia',col:'#1b5e20',psiq:[0.7,0.9,1.3,1.6,1.9,2.2,2.5],psic:[4,6,9,12,14,16,18],neuro:[0.5,0.7,1.0,1.2,1.5,1.8,2.0]},
+  {c:'Peru',col:'#2e7d32',psiq:[0.5,0.6,0.8,1.0,1.3,1.6,2.0],psic:[3,4,6,8,10,12,15],neuro:[0.4,0.5,0.7,0.8,1.0,1.2,1.4]},
+  {c:'Ecuador',col:'#388e3c',psiq:[0.5,0.6,0.8,1.0,1.2,1.4,1.6],psic:[3,4,6,7,9,11,13],neuro:[0.4,0.5,0.7,0.8,1.0,1.1,1.2]},
+  {c:'Bolivia',col:'#558b2f',psiq:[0.3,0.4,0.5,0.6,0.7,0.8,1.0],psic:[2,3,4,5,6,7,8],neuro:[0.2,0.3,0.4,0.5,0.5,0.6,0.7]},
+  {c:'Venezuela',col:'#b71c1c',psiq:[0.8,1.0,1.4,1.5,1.3,1.0,0.9],psic:[4,5,7,8,7,5,4],neuro:[0.8,1.0,1.3,1.5,1.5,1.2,0.8]}
+];
+Plotly.newPlot('chart-countries',[
+  {type:'bar',name:'Psiq',x:and.map(d=>d.c),y:and.map(d=>d.psiq[6]),marker:{color:'#1a237e'}},
+  {type:'bar',name:'Psic',x:and.map(d=>d.c),y:and.map(d=>d.psic[6]),marker:{color:'#2e7d32'}},
+  {type:'bar',name:'Neuro',x:and.map(d=>d.c),y:and.map(d=>d.neuro[6]),marker:{color:'#4a148c'}}
+],{title:{text:'Especialistas/100k — Region Andina 2024',font:{size:15,color:'#1b5e20'}},
+  barmode:'group',yaxis:{title:'Especialistas/100k'},height:460,
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff',legend:{orientation:'h'}},{responsive:true});
+Plotly.newPlot('chart-trends',and.map(d=>({
+  type:'scatter',mode:'lines+markers',name:d.c,x:years,y:d.psiq,
+  line:{color:d.col,width:2.5},marker:{size:6}
+})),{title:{text:'Psiquiatras/100k — Region Andina 2001-2024',font:{size:15,color:'#1b5e20'}},
+  xaxis:{title:'Ano'},yaxis:{title:'Psiquiatras/100k'},height:460,
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'},{responsive:true});
+const vzla=and.find(d=>d.c==='Venezuela');
+Plotly.newPlot('chart-vzla',[
+  {type:'scatter',mode:'lines+markers',name:'Venezuela Psiq',x:years,y:vzla.psiq,line:{color:'#b71c1c',width:3},marker:{size:8}},
+  {type:'scatter',mode:'lines+markers',name:'Venezuela Psic',x:years,y:vzla.psic.map(v=>v/10),line:{color:'#ef5350',width:3,dash:'dash'},marker:{size:8},yaxis:'y2'}
+],{
+  title:{text:'Venezuela: Regresion Documentada (Psiq/100k y Psic/100k div10)',font:{size:14,color:'#b71c1c'}},
+  xaxis:{title:'Ano'},yaxis:{title:'Psiquiatras/100k',color:'#b71c1c'},
+  yaxis2:{title:'Psicologos/100k (x10)',overlaying:'y',side:'right',color:'#ef5350'},
+  height:380,plot_bgcolor:'#fafafa',paper_bgcolor:'#fff',
+  annotations:[{x:2020,y:1.0,text:'Inicio caida<br>acelerada',showarrow:true,arrowcolor:'#b71c1c',font:{color:'#b71c1c',size:10}}]
+},{responsive:true});
+</script>
+</body>
+</html>
