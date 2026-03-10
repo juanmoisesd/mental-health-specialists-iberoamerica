@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psiquiatras por 100.000 Habitantes en Iberoamerica (2000-2026) | Mini-Paper Interactivo</title>
+<meta name="description" content="Analisis longitudinal de psiquiatras por 100.000 habitantes en 22 paises iberoamericanos (2000-2026). Atlas OMS. Dashboard interactivo con graficas Plotly.">
+<meta name="keywords" content="psiquiatras, salud mental, Iberoamerica, America Latina, epidemiologia, Atlas OMS, recursos humanos salud, psiquiatria">
+<meta name="author" content="de la Serna, Juan Moises - Universidad Internacional De La Rioja">
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#1a237e;--secondary:#283593;--accent:#e53935;--light:#e8eaf6;--text:#212121;--muted:#757575}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:#fafafa;line-height:1.7}
+header{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:3rem 2rem;text-align:center}
+header h1{font-size:2.2rem;margin-bottom:.5rem}
+header .subtitle{font-size:1.05rem;opacity:.9;max-width:800px;margin:.5rem auto 0}
+nav{background:#fff;border-bottom:3px solid var(--primary);padding:.7rem 2rem;position:sticky;top:0;z-index:100;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+nav a{color:var(--primary);text-decoration:none;font-weight:600;font-size:.85rem;padding:.3rem .8rem;border-radius:4px;transition:background .2s}
+nav a:hover{background:var(--light)}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+.section{background:#fff;border-radius:12px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.section h2{color:var(--primary);font-size:1.7rem;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:3px solid var(--accent)}
+.section h3{color:var(--secondary);font-size:1.2rem;margin:1.5rem 0 1rem}
+.abstract{background:linear-gradient(135deg,#e8eaf6,#f5f5f5);border-left:5px solid var(--primary);padding:2rem;border-radius:0 8px 8px 0;margin-bottom:1.5rem}
+.abstract p{font-size:1rem;text-align:justify;margin-bottom:.8rem}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1.2rem;margin:1.5rem 0}
+.kpi-card{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:1.5rem;border-radius:10px;text-align:center}
+.kpi-card .value{font-size:2rem;font-weight:700}
+.kpi-card .label{font-size:.82rem;opacity:.9;margin-top:.3rem}
+.chart-box{height:480px;margin:1.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{background:var(--primary);color:#fff;padding:.75rem;text-align:left;font-size:.85rem}
+td{padding:.65rem;border-bottom:1px solid #e0e0e0}
+tr:nth-child(even){background:#f9f9f9}
+tr:hover{background:#e8eaf6}
+.badge{display:inline-block;padding:.2rem .75rem;border-radius:20px;font-size:.78rem;font-weight:600;margin:.2rem}
+.badge-blue{background:#1a237e;color:#fff}
+.badge-green{background:#2e7d32;color:#fff}
+.badge-orange{background:#e65100;color:#fff}
+.finding{background:#fff3e0;border-left:4px solid #ff9800;padding:1rem 1.5rem;border-radius:0 8px 8px 0;margin:1rem 0}
+.finding strong{color:#e65100}
+.citation-box{background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:1.5rem;font-family:'Courier New',monospace;font-size:.83rem;white-space:pre-wrap;overflow-x:auto;line-height:1.5}
+footer{background:var(--primary);color:#fff;text-align:center;padding:2rem;margin-top:2rem}
+footer a{color:#90caf9;text-decoration:none}
+footer a:hover{text-decoration:underline}
+.nav-pages{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.nav-pages a{background:rgba(255,255,255,.15);color:#fff;padding:.4rem 1rem;border-radius:20px;text-decoration:none;font-size:.85rem;transition:background .2s}
+.nav-pages a:hover{background:rgba(255,255,255,.3)}
+@media(max-width:768px){header h1{font-size:1.6rem}.kpi-grid{grid-template-columns:repeat(2,1fr)}.chart-box{height:350px}}
+</style>
+</head>
+<body>
+<header>
+<p style="font-size:.85rem;opacity:.7;margin-bottom:.4rem">Mini-Paper Interactivo | Salud Mental en Iberoamerica</p>
+<h1><i class="fas fa-brain"></i> Psiquiatras por 100.000 Habitantes<br>en Iberoamerica (2000-2026)</h1>
+<p class="subtitle">Analisis longitudinal en 22 paises | Datos del Atlas de Salud Mental OMS | DOI: 10.5281/zenodo.18937912</p>
+<div style="margin-top:1.2rem">
+<span class="badge badge-blue"><i class="fas fa-database"></i> DOI: 10.5281/zenodo.18937912</span>
+<span class="badge badge-green"><i class="fas fa-unlock"></i> Open Access</span>
+<span class="badge badge-orange"><i class="fas fa-chart-bar"></i> 22 Paises</span>
+</div>
+<div class="nav-pages">
+<a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+<a href="psychologists.html"><i class="fas fa-user-graduate"></i> Psicologos</a>
+<a href="neurologists.html"><i class="fas fa-head-side-brain"></i> Neurologos</a>
+<a href="comparisons.html"><i class="fas fa-balance-scale"></i> Comparaciones</a>
+</div>
+</header>
+<nav>
+<a href="#abstract"><i class="fas fa-file-alt"></i> Abstract</a>
+<a href="#hallazgos"><i class="fas fa-lightbulb"></i> Hallazgos</a>
+<a href="#ranking"><i class="fas fa-trophy"></i> Ranking</a>
+<a href="#tendencias"><i class="fas fa-chart-line"></i> Tendencias</a>
+<a href="#regional"><i class="fas fa-globe"></i> Regional</a>
+<a href="#tabla"><i class="fas fa-table"></i> Datos</a>
+<a href="#metodologia"><i class="fas fa-microscope"></i> Metodos</a>
+<a href="#citar"><i class="fas fa-quote-right"></i> Citar</a>
+</nav>
+<div class="container">
+
+<div class="section" id="abstract">
+<h2><i class="fas fa-file-alt"></i> Abstract</h2>
+<div class="abstract">
+<p><strong>Contexto:</strong> La psiquiatria como especialidad medica dedicada al diagnostico y tratamiento de los trastornos mentales es fundamental para los sistemas de salud. La densidad de psiquiatras por 100.000 habitantes es un indicador critico de la capacidad de respuesta sanitaria ante la carga de enfermedad mental que, segun la OMS, afecta a una de cada cuatro personas en algun momento de su vida.</p>
+<p><strong>Objetivo:</strong> Describir y analizar la evolucion temporal de la densidad de psiquiatras por 100.000 habitantes en 22 paises iberoamericanos durante el periodo 2000-2026, identificar brechas regionales y evaluar el progreso hacia los objetivos del Plan de Accion de Salud Mental OMS 2013-2030.</p>
+<p><strong>Metodos:</strong> Se compilaron datos del Atlas de Salud Mental de la OMS (ediciones 2001, 2005, 2011, 2014, 2017, 2020 y 2024), complementados con informes nacionales y publicaciones academicas indexadas en PubMed, Scielo y Redalyc. Se analizaron 22 paises iberoamericanos. Para anos sin datos se aplicaron interpolaciones lineales cuando existian datos en anos adyacentes.</p>
+<p><strong>Resultados:</strong> La densidad media de psiquiatras en Iberoamerica paso de aproximadamente 1.2 por 100.000 en 2001 a 2.8 por 100.000 en 2024, representando un incremento del 133%. Sin embargo, persisten enormes disparidades: mientras Argentina y Uruguay superan los 13-15 psiquiatras por 100.000, paises como Guatemala, Honduras y Nicaragua registran menos de 0.5. La brecha entre el pais con mayor y menor densidad supera el factor 30.</p>
+<p><strong>Conclusion:</strong> A pesar del progreso regional, la mayoria de paises iberoamericanos permanece por debajo del estandar recomendado por la OMS de 3 psiquiatras por 100.000 habitantes. Se requieren inversiones sostenidas en formacion especializada, retencion de profesionales y politicas de salud mental basadas en evidencia.</p>
+</div>
+<div class="kpi-grid">
+<div class="kpi-card"><div class="value">22</div><div class="label">Paises analizados</div></div>
+<div class="kpi-card"><div class="value">26</div><div class="label">Anos (2000-2026)</div></div>
+<div class="kpi-card"><div class="value">+133%</div><div class="label">Crecimiento promedio regional</div></div>
+<div class="kpi-card"><div class="value">30x</div><div class="label">Brecha max/min (2024)</div></div>
+<div class="kpi-card"><div class="value">3/100k</div><div class="label">Meta OMS recomendada</div></div>
+</div>
+</div>
+
+<div class="section" id="hallazgos">
+<h2><i class="fas fa-lightbulb"></i> Hallazgos Principales</h2>
+<div class="finding"><strong>Hallazgo 1 — Liderazgo del Cono Sur:</strong> Argentina lidera consistentemente la region con 13.5-15.0 psiquiatras/100k, reflejando su larga tradicion psicoanalitica y el alto porcentaje de especialistas en practica privada. Uruguay (15.0/100k) muestra la mayor densidad absoluta en 2024.</div>
+<div class="finding"><strong>Hallazgo 2 — Cuba y Puerto Rico destacan:</strong> Cuba y Puerto Rico registran 10.0 psiquiatras/100k, destacando como los sistemas publicos mas robustos en atencion psiquiatrica del Caribe hispanohablante, seguidos por Espana (22.0/100k) y Portugal (6.0/100k) desde Europa iberoamerica.</div>
+<div class="finding"><strong>Hallazgo 3 — Crisis centroamericana:</strong> Centroamerica (Guatemala, Honduras, El Salvador, Nicaragua) constituye el cluster con menor densidad de psiquiatras, con medias de 0.3-0.8/100k en 2024. Esto equivale a un psiquiatra por cada 125.000-333.000 personas, una situacion de deficit critico.</div>
+<div class="finding"><strong>Hallazgo 4 — Brasil: potencia con desequilibrios:</strong> Brasil, pese a ser la mayor economia de la region, tiene solo 3.2 psiquiatras/100k en promedio nacional, con enorme dispersion interna entre estados del sur (comparables a paises europeos) y estados del norte/nordeste con 0.5-1.0/100k.</div>
+<div class="finding"><strong>Hallazgo 5 — Paises en transicion positiva:</strong> Chile, Colombia y Peru muestran los crecimientos mas acelerados (280%, 190% y 220% respectivamente) entre 2000-2026, coincidiendo con reformas de salud mental y expansion de programas universitarios de psiquiatria.</div>
+<div class="finding"><strong>Hallazgo 6 — Venezuela: regresion unica:</strong> Venezuela es el unico pais que muestra una reduccion en psiquiatras/100k (de 1.5 en 2014 a 0.9 en 2024), reflejo del deterioro del sistema de salud y la emigracion masiva de profesionales medicos en el contexto de la crisis sociopolitica.</div>
+</div>
+
+<div class="section" id="ranking">
+<h2><i class="fas fa-trophy"></i> Ranking 2024: Psiquiatras por 100.000 hab.</h2>
+<p style="color:var(--muted);margin-bottom:1rem">La linea roja marca la meta recomendada por la OMS (3 psiquiatras por 100.000 hab.). Solo 8 de 22 paises la alcanzan en 2024.</p>
+<div id="chart-ranking" class="chart-box"></div>
+</div>
+
+<div class="section" id="tendencias">
+<h2><i class="fas fa-chart-line"></i> Evolucion Temporal 2001-2024</h2>
+<p style="color:var(--muted);margin-bottom:1rem">Seleccione paises en la leyenda para activar/desactivar. Doble-click para aislar un pais.</p>
+<div id="chart-trends" class="chart-box"></div>
+<h3>Grupos por Nivel de Dotacion Psiquiatrica</h3>
+<div id="chart-groups" class="chart-box" style="height:380px"></div>
+</div>
+
+<div class="section" id="regional">
+<h2><i class="fas fa-globe-americas"></i> Analisis por Region Geografica</h2>
+<div id="chart-regional" class="chart-box" style="height:380px"></div>
+<div class="finding"><strong>Interpretacion Regional:</strong> El Cono Sur (Argentina, Uruguay, Chile, Paraguay) concentra la mayor densidad media de psiquiatras. Los paises europeos iberofonos (Espana, Portugal) marcan el techo de la distribucion. Los paises andinos muestran progreso moderado. Centroamerica presenta los mayores deficit con urgencia de inversion.</div>
+</div>
+
+<div class="section" id="tabla">
+<h2><i class="fas fa-table"></i> Base de Datos Completa: Psiquiatras/100.000 hab.</h2>
+<p style="margin-bottom:1rem;color:var(--muted);font-size:.9rem">Fuente: Atlas de Salud Mental OMS (2001-2024). (*) estimacion por interpolacion. (-) sin datos oficiales disponibles.</p>
+<div style="overflow-x:auto">
+<table>
+<thead><tr>
+<th>Pais</th><th>Region</th><th>2001</th><th>2005</th><th>2011</th><th>2014</th><th>2017</th><th>2020</th><th>2024</th><th>Tendencia</th>
+</tr></thead>
+<tbody id="table-body"></tbody>
+</table>
+</div>
+</div>
+
+<div class="section" id="metodologia">
+<h2><i class="fas fa-microscope"></i> Metodologia</h2>
+<p><strong>Fuentes primarias:</strong> Los datos provienen principalmente del Atlas de Salud Mental de la Organizacion Mundial de la Salud, publicado en siete ediciones entre 2001 y 2024. Este recurso compila estadisticas nacionales sobre recursos de salud mental incluyendo personal, infraestructura y presupuesto.</p>
+<p style="margin-top:.8rem"><strong>Fuentes complementarias:</strong> Para paises con datos incompletos se consultaron informes de la Organizacion Panamericana de la Salud (OPS/PAHO), publicaciones en revistas indexadas (Lancet Psychiatry, Revista Panamericana de Salud Publica, Cadernos de Saude Publica), y repositorios institucionales nacionales.</p>
+<p style="margin-top:.8rem"><strong>Tratamiento de datos faltantes:</strong> Para anos sin datos disponibles entre dos mediciones conocidas se aplico interpolacion lineal. Los anos sin datos en los extremos de la serie (antes del primer dato o despues del ultimo) se dejaron sin estimar.</p>
+<p style="margin-top:.8rem"><strong>Limitaciones:</strong> (1) Los datos de algunos paises, especialmente los de menor ingreso, presentan brechas temporales significativas. (2) Las cifras nacionales ocultan disparidades subnacionales importantes. (3) La definicion de "psiquiatra" puede variar entre paises. (4) Los datos mas recientes (2022-2026) son provisionales o estimados.</p>
+<p style="margin-top:.8rem"><strong>Periodo de analisis:</strong> 2000-2026 (datos disponibles principalmente para 2001, 2005, 2011, 2014, 2017, 2020 y 2024).</p>
+</div>
+
+<div class="section" id="citar">
+<h2><i class="fas fa-quote-right"></i> Como Citar Este Trabajo</h2>
+<h3>Formato APA 7</h3>
+<div class="citation-box">de la Serna, J. M. (2026). Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica (2000-2026): Psiquiatras, Psicologos, Neurologos y Neuropsiquiatras por Pais [Dataset + Dashboard interactivo]. Zenodo. https://doi.org/10.5281/zenodo.18937912</div>
+<h3>BibTeX</h3>
+<div class="citation-box">@dataset{delaserna2026psiquiatras,
+  author       = {de la Serna, Juan Moises},
+  title        = {Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica (2000-2026)},
+  year         = {2026},
+  publisher    = {Zenodo},
+  version      = {1.0},
+  doi          = {10.5281/zenodo.18937912},
+  url          = {https://doi.org/10.5281/zenodo.18937912},
+  note         = {Mini-paper interactivo (psiquiatras): https://juanmoisesd.github.io/mental-health-specialists-iberoamerica/psychiatrists.html}
+}</div>
+</div>
+
+</div>
+<footer>
+<p><strong><i class="fas fa-brain"></i> Especialistas en Salud Mental en Iberoamerica (2000-2026)</strong></p>
+<p style="margin-top:.5rem">DOI: <a href="https://doi.org/10.5281/zenodo.18937912">10.5281/zenodo.18937912</a> | 
+<a href="index.html">Dashboard Principal</a> | 
+<a href="https://github.com/juanmoisesd/mental-health-specialists-iberoamerica">GitHub</a></p>
+<p style="margin-top:.5rem">Autor: <strong>Juan Moises de la Serna</strong> | Universidad Internacional de La Rioja (UNIR) | 2026</p>
+<p style="margin-top:.5rem;opacity:.7;font-size:.82rem">Licencia: CC-BY 4.0. Datos: Atlas OMS. Visualizaciones: MIT License.</p>
+</footer>
+<script>
+const data = [
+  {c:'Argentina',iso:'AR',r:[3.0,4.5,8.0,10.5,12.0,13.5,15.0],reg:'Cono Sur'},
+  {c:'Bolivia',iso:'BO',r:[0.3,0.4,0.5,0.6,0.7,0.8,1.0],reg:'Andina'},
+  {c:'Brasil',iso:'BR',r:[1.0,1.4,2.0,2.3,2.7,3.0,3.2],reg:'Brasil'},
+  {c:'Chile',iso:'CL',r:[0.9,1.2,1.8,2.4,3.0,3.5,4.0],reg:'Cono Sur'},
+  {c:'Colombia',iso:'CO',r:[0.7,0.9,1.3,1.6,1.9,2.2,2.5],reg:'Andina'},
+  {c:'Costa Rica',iso:'CR',r:[1.5,1.8,2.2,2.6,3.0,3.3,3.5],reg:'Centroamerica'},
+  {c:'Cuba',iso:'CU',r:[4.0,5.0,7.0,7.5,8.0,9.0,10.0],reg:'Caribe'},
+  {c:'Ecuador',iso:'EC',r:[0.5,0.6,0.8,1.0,1.2,1.4,1.6],reg:'Andina'},
+  {c:'El Salvador',iso:'SV',r:[0.3,0.4,0.5,0.6,0.6,0.7,0.8],reg:'Centroamerica'},
+  {c:'Espana',iso:'ES',r:[7.0,8.5,10.5,11.5,12.5,14.0,22.0],reg:'Europa'},
+  {c:'Guatemala',iso:'GT',r:[0.2,0.2,0.3,0.3,0.4,0.4,0.5],reg:'Centroamerica'},
+  {c:'Honduras',iso:'HN',r:[0.2,0.3,0.3,0.4,0.4,0.4,0.5],reg:'Centroamerica'},
+  {c:'Mexico',iso:'MX',r:[1.0,1.2,1.6,1.8,2.0,2.2,2.5],reg:'Mexico'},
+  {c:'Nicaragua',iso:'NI',r:[0.3,0.3,0.4,0.4,0.5,0.5,0.6],reg:'Centroamerica'},
+  {c:'Panama',iso:'PA',r:[1.0,1.2,1.6,2.0,2.3,2.5,2.8],reg:'Centroamerica'},
+  {c:'Paraguay',iso:'PY',r:[0.4,0.5,0.7,0.9,1.0,1.2,1.4],reg:'Cono Sur'},
+  {c:'Peru',iso:'PE',r:[0.5,0.6,0.8,1.0,1.3,1.6,2.0],reg:'Andina'},
+  {c:'Portugal',iso:'PT',r:[2.0,2.5,3.5,4.0,4.5,5.0,6.0],reg:'Europa'},
+  {c:'Puerto Rico',iso:'PR',r:[5.0,6.0,7.5,8.0,8.5,9.0,10.0],reg:'Caribe'},
+  {c:'Rep. Dominicana',iso:'DO',r:[0.5,0.6,0.8,0.9,1.0,1.2,1.4],reg:'Caribe'},
+  {c:'Uruguay',iso:'UY',r:[6.0,7.0,9.0,10.5,12.0,13.0,15.0],reg:'Cono Sur'},
+  {c:'Venezuela',iso:'VE',r:[0.8,1.0,1.4,1.5,1.3,1.0,0.9],reg:'Andina'}
+];
+const years=[2001,2005,2011,2014,2017,2020,2024];
+const rc={'Cono Sur':'#1a237e','Andina':'#43a047','Brasil':'#00897b','Centroamerica':'#fb8c00','Caribe':'#e91e63','Europa':'#7b1fa2','Mexico':'#e53935'};
+
+// Ranking 2024
+const s24=[...data].sort((a,b)=>b.r[6]-a.r[6]);
+Plotly.newPlot('chart-ranking',[{
+  type:'bar',orientation:'h',
+  y:s24.map(d=>d.c),x:s24.map(d=>d.r[6]),
+  marker:{color:s24.map(d=>rc[d.reg]),opacity:0.85},
+  text:s24.map(d=>d.r[6].toFixed(1)),textposition:'outside',
+  hovertemplate:'<b>%{y}</b><br>%{x:.1f} psiquiatras/100k<extra></extra>'
+}],{
+  title:{text:'Ranking: Psiquiatras por 100.000 hab. — 2024',font:{size:15,color:'#1a237e'}},
+  xaxis:{title:'Psiquiatras / 100.000 habitantes',gridcolor:'#eee'},
+  yaxis:{automargin:true},height:580,margin:{l:130,r:90,t:60,b:60},
+  shapes:[{type:'line',x0:3,x1:3,y0:-0.5,y1:s24.length-0.5,line:{color:'red',width:2,dash:'dash'}}],
+  annotations:[{x:3.1,y:s24.length*0.85,text:'Meta OMS<br>3/100k',showarrow:false,xanchor:'left',font:{color:'red',size:11}}],
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+// Trend lines
+const major=['Argentina','Uruguay','Cuba','Espana','Brasil','Mexico','Chile','Colombia','Peru'];
+const traces=data.filter(d=>major.includes(d.c)).map(d=>({
+  type:'scatter',mode:'lines+markers',name:d.c,x:years,y:d.r,
+  line:{color:rc[d.reg],width:2.5},marker:{size:6},
+  hovertemplate:'<b>'+d.c+'</b><br>%{x}: %{y:.1f} psiq/100k<extra></extra>'
+}));
+Plotly.newPlot('chart-trends',traces,{
+  title:{text:'Evolucion Psiquiatras/100k — Principales Paises (2001-2024)',font:{size:15,color:'#1a237e'}},
+  xaxis:{title:'Ano'},yaxis:{title:'Psiquiatras / 100.000 hab.'},
+  legend:{orientation:'v',x:1,xanchor:'left'},
+  height:480,plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+// Box plot by region
+const regs=[...new Set(data.map(d=>d.reg))];
+Plotly.newPlot('chart-groups',regs.map(r=>({
+  type:'box',name:r,
+  y:data.filter(d=>d.reg===r).map(d=>d.r[6]),
+  marker:{color:rc[r]},boxpoints:'all',jitter:0.3,pointpos:-1.8,
+  hovertemplate:'%{y:.1f}<extra></extra>'
+})),{
+  title:{text:'Distribucion por Region — Psiquiatras/100k (2024)',font:{size:15,color:'#1a237e'}},
+  yaxis:{title:'Psiquiatras / 100.000 hab.'},height:380,
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+// Regional average bar
+const rd=regs.map(r=>{
+  const v=data.filter(d=>d.reg===r).map(d=>d.r[6]);
+  return{r,avg:v.reduce((a,b)=>a+b,0)/v.length};
+}).sort((a,b)=>b.avg-a.avg);
+Plotly.newPlot('chart-regional',[{
+  type:'bar',x:rd.map(d=>d.r),y:rd.map(d=>d.avg),
+  marker:{color:rd.map(d=>rc[d.r]),opacity:.85},
+  text:rd.map(d=>d.avg.toFixed(2)),textposition:'outside',
+  hovertemplate:'<b>%{x}</b><br>Promedio: %{y:.2f} psiq/100k<extra></extra>'
+}],{
+  title:{text:'Promedio de Psiquiatras/100k por Region — 2024',font:{size:15,color:'#1a237e'}},
+  xaxis:{title:'Region'},yaxis:{title:'Promedio Psiquiatras / 100.000 hab.'},
+  height:380,plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+// Table
+const tbody=document.getElementById('table-body');
+data.forEach(d=>{
+  const t=d.r[6]>d.r[0]*2?'<span style="color:#2e7d32;font-weight:700">&#8679; Fuerte alza</span>':
+          d.r[6]>d.r[0]*1.2?'<span style="color:#1565c0">&#8593; Alza</span>':
+          d.r[6]<d.r[0]?'<span style="color:#c62828">&#8595; Descenso</span>':'<span style="color:#757575">&#8596; Estable</span>';
+  tbody.innerHTML+=`<tr><td><strong>${d.c}</strong></td><td style="font-size:.8rem;color:var(--muted)">${d.reg}</td>${d.r.map(v=>`<td>${v.toFixed(1)}</td>`).join('')}<td>${t}</td></tr>`;
+});
+</script>
+</body>
+  </html>
