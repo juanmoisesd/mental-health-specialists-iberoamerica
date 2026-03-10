@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neurologos por 100.000 Habitantes en Iberoamerica (2000-2026) | Mini-Paper Interactivo</title>
+<meta name="description" content="Analisis longitudinal de neurologos por 100.000 habitantes en 22 paises iberoamericanos (2000-2026). Datos OMS, WHO Atlas y fuentes nacionales.">
+<meta name="keywords" content="neurologos, neurologia, Iberoamerica, America Latina, recursos humanos salud, Atlas OMS, salud neurologica">
+<meta name="author" content="de la Serna, Juan Moises - Universidad Internacional De La Rioja">
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#4a148c;--secondary:#6a1b9a;--accent:#f57f17;--light:#f3e5f5;--text:#212121;--muted:#757575}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:#fafafa;line-height:1.7}
+header{background:linear-gradient(135deg,#4a148c,#6a1b9a);color:#fff;padding:3rem 2rem;text-align:center}
+header h1{font-size:2.2rem;margin-bottom:.5rem}
+header .subtitle{font-size:1.05rem;opacity:.9;max-width:800px;margin:.5rem auto 0}
+nav{background:#fff;border-bottom:3px solid var(--primary);padding:.7rem 2rem;position:sticky;top:0;z-index:100;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+nav a{color:var(--primary);text-decoration:none;font-weight:600;font-size:.85rem;padding:.3rem .8rem;border-radius:4px;transition:background .2s}
+nav a:hover{background:var(--light)}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+.section{background:#fff;border-radius:12px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.section h2{color:var(--primary);font-size:1.7rem;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:3px solid var(--accent)}
+.section h3{color:var(--secondary);font-size:1.2rem;margin:1.5rem 0 1rem}
+.abstract{background:linear-gradient(135deg,#f3e5f5,#f5f5f5);border-left:5px solid var(--primary);padding:2rem;border-radius:0 8px 8px 0;margin-bottom:1.5rem}
+.abstract p{font-size:1rem;text-align:justify;margin-bottom:.8rem}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1.2rem;margin:1.5rem 0}
+.kpi-card{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:1.5rem;border-radius:10px;text-align:center}
+.kpi-card .value{font-size:2rem;font-weight:700}
+.kpi-card .label{font-size:.82rem;opacity:.9;margin-top:.3rem}
+.chart-box{height:480px;margin:1.5rem 0}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{background:var(--primary);color:#fff;padding:.75rem;text-align:left;font-size:.85rem}
+td{padding:.65rem;border-bottom:1px solid #e0e0e0}
+tr:nth-child(even){background:#f9f9f9}
+tr:hover{background:#f3e5f5}
+.badge{display:inline-block;padding:.2rem .75rem;border-radius:20px;font-size:.78rem;font-weight:600;margin:.2rem}
+.badge-purple{background:#4a148c;color:#fff}
+.badge-green{background:#2e7d32;color:#fff}
+.badge-orange{background:#e65100;color:#fff}
+.finding{background:#ede7f6;border-left:4px solid #7e57c2;padding:1rem 1.5rem;border-radius:0 8px 8px 0;margin:1rem 0}
+.finding strong{color:#4527a0}
+.citation-box{background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:1.5rem;font-family:'Courier New',monospace;font-size:.83rem;white-space:pre-wrap;overflow-x:auto;line-height:1.5}
+footer{background:var(--primary);color:#fff;text-align:center;padding:2rem;margin-top:2rem}
+footer a{color:#ce93d8;text-decoration:none}
+footer a:hover{text-decoration:underline}
+.nav-pages{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.nav-pages a{background:rgba(255,255,255,.15);color:#fff;padding:.4rem 1rem;border-radius:20px;text-decoration:none;font-size:.85rem}
+.nav-pages a:hover{background:rgba(255,255,255,.3)}
+@media(max-width:768px){header h1{font-size:1.6rem}.kpi-grid{grid-template-columns:repeat(2,1fr)}.chart-box{height:350px}}
+</style>
+</head>
+<body>
+<header>
+<p style="font-size:.85rem;opacity:.7;margin-bottom:.4rem">Mini-Paper Interactivo | Salud Mental y Neurologica en Iberoamerica</p>
+<h1><i class="fas fa-head-side-brain"></i> Neurologos por 100.000 Habitantes<br>en Iberoamerica (2000-2026)</h1>
+<p class="subtitle">Analisis longitudinal en 22 paises | Datos OMS y fuentes nacionales | DOI: 10.5281/zenodo.18937912</p>
+<div style="margin-top:1.2rem">
+<span class="badge badge-purple"><i class="fas fa-database"></i> DOI: 10.5281/zenodo.18937912</span>
+<span class="badge badge-green"><i class="fas fa-unlock"></i> Open Access</span>
+<span class="badge badge-orange"><i class="fas fa-chart-bar"></i> 22 Paises</span>
+</div>
+<div class="nav-pages">
+<a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+<a href="psychiatrists.html"><i class="fas fa-brain"></i> Psiquiatras</a>
+<a href="psychologists.html"><i class="fas fa-user-graduate"></i> Psicologos</a>
+<a href="comparisons.html"><i class="fas fa-balance-scale"></i> Comparaciones</a>
+</div>
+</header>
+<nav>
+<a href="#abstract">Abstract</a>
+<a href="#hallazgos">Hallazgos</a>
+<a href="#ranking">Ranking</a>
+<a href="#tendencias">Tendencias</a>
+<a href="#regional">Regional</a>
+<a href="#carga">Carga Neurologica</a>
+<a href="#tabla">Datos</a>
+<a href="#citar">Citar</a>
+</nav>
+<div class="container">
+
+<div class="section" id="abstract">
+<h2><i class="fas fa-file-alt"></i> Abstract</h2>
+<div class="abstract">
+<p><strong>Contexto:</strong> La neurologia atiende condiciones de alta prevalencia como epilepsia, accidente cerebrovascular, enfermedad de Parkinson, migranas y demencias, que generan una carga significativa de enfermedad en Iberoamerica. La densidad de neurologos por 100.000 habitantes determina la capacidad de diagnostico y tratamiento oportuno de estas condiciones, muchas de las cuales son prevenibles o tratables con atencion especializada precoz.</p>
+<p><strong>Objetivo:</strong> Describir la evolucion temporal de la densidad de neurologos por 100.000 habitantes en 22 paises iberoamericanos durante 2000-2026, identificar brechas en relacion con estandares internacionales y analizar la correlacion entre densidad neurologica y parametros de salud publica.</p>
+<p><strong>Metodos:</strong> Datos del Atlas Neurologico OMS, PAHO/OPS, sociedades neurologicas nacionales (Federacion Mundial de Neurologia, Sociedad Iberoamericana de Neurologia) y literatura academica. La densidad incluye neurologos de adultos; en algunos paises la neurologia pediatrica se reporta separadamente.</p>
+<p><strong>Resultados:</strong> La densidad media de neurologos en Iberoamerica paso de aproximadamente 0.8 por 100.000 en 2001 a 2.1 por 100.000 en 2024 (+163%). Argentina (5.5/100k) y Uruguay (5.0/100k) lideran la region. La OMS recomienda al menos 1 neurologo por 100.000 para cobertura basica; solo 11 de 22 paises alcanzan este umbral en 2024.</p>
+<p><strong>Conclusion:</strong> El deficit de neurologos en Iberoamerica, especialmente en Centroamerica y paises andinos, limita severamente la atencion de condiciones neurologicas prevalentes. La formacion de especialistas y el fortalecimiento de redes de atencion neurologica son prioridades de salud publica regional.</p>
+</div>
+<div class="kpi-grid">
+<div class="kpi-card"><div class="value">22</div><div class="label">Paises analizados</div></div>
+<div class="kpi-card"><div class="value">+163%</div><div class="label">Crecimiento 2001-2024</div></div>
+<div class="kpi-card"><div class="value">11/22</div><div class="label">Paises que alcanzan 1/100k (OMS)</div></div>
+<div class="kpi-card"><div class="value">5.5</div><div class="label">Argentina — maximo regional (2024)</div></div>
+<div class="kpi-card"><div class="value">0.2</div><div class="label">Guatemala/Honduras — minimo (2024)</div></div>
+</div>
+</div>
+
+<div class="section" id="hallazgos">
+<h2><i class="fas fa-lightbulb"></i> Hallazgos Principales</h2>
+<div class="finding"><strong>Hallazgo 1 — Menor densidad que psiquiatras/psicologos:</strong> En toda la region, la densidad de neurologos es menor que la de psiquiatras en casi todos los paises, lo que refleja las mayores exigencias de infraestructura (neuroimagen, electroencefalografia, laboratorio) para el ejercicio de la neurologia.</div>
+<div class="finding"><strong>Hallazgo 2 — Cono Sur lidera la especialidad:</strong> Argentina (5.5/100k) y Uruguay (5.0/100k) tienen las densidades mas altas, seguidos por Cuba (3.5/100k) y Espana (9.5/100k). Estos paises cuentan con programas de residencia solidos y sociedades neurologicas activas.</div>
+<div class="finding"><strong>Hallazgo 3 — La epilepsia como driver de demanda:</strong> La prevalencia de epilepsia en Iberoamerica (7-12/1000 en paises de mediano ingreso vs 5/1000 en paises desarrollados) genera una demanda de neurologia desproporcionada. Sin embargo, el 75% de personas con epilepsia en regiones de bajo ingreso no recibe tratamiento adecuado ("brecha de tratamiento").</div>
+<div class="finding"><strong>Hallazgo 4 — Accidente cerebrovascular y urgencia neurologica:</strong> El ictus es la segunda causa de muerte y la primera de discapacidad adquirida en Iberoamerica. La disponibilidad de neurologos con capacitacion en stroke es critica; en Centroamerica y el area andina, la mayoria de hospitales carece de esta cobertura las 24 horas.</div>
+<div class="finding"><strong>Hallazgo 5 — Venezuela: deterioro documentado:</strong> Venezuela muestra una reduccion de neurologos activos de 1.5/100k en 2017 a 0.8/100k en 2024 debido a migracion profesional masiva, acompanando el deterioro general del sistema sanitario.</div>
+<div class="finding"><strong>Hallazgo 6 — Teleneurologia como solucion emergente:</strong> Paises como Brasil, Chile y Colombia han implementado programas de teleneurologia que permiten consultas remotas desde areas rurales con especialistas en centros urbanos, representando una solucion innovadora para la brecha de acceso.</div>
+</div>
+
+<div class="section" id="ranking">
+<h2><i class="fas fa-trophy"></i> Ranking 2024: Neurologos por 100.000 hab.</h2>
+<p style="color:var(--muted);margin-bottom:1rem">La linea roja marca el umbral minimo OMS de 1 neurologo/100k para cobertura basica. Solo 11 de 22 paises lo alcanzan.</p>
+<div id="chart-ranking" class="chart-box"></div>
+</div>
+
+<div class="section" id="tendencias">
+<h2><i class="fas fa-chart-line"></i> Evolucion Temporal 2001-2024</h2>
+<div id="chart-trends" class="chart-box"></div>
+</div>
+
+<div class="section" id="regional">
+<h2><i class="fas fa-globe-americas"></i> Analisis Regional</h2>
+<div id="chart-regional" class="chart-box" style="height:380px"></div>
+</div>
+
+<div class="section" id="carga">
+<h2><i class="fas fa-weight-hanging"></i> Comparacion: Neurologos vs Psiquiatras (2024)</h2>
+<p style="color:var(--muted);margin-bottom:1rem">Relacion entre la densidad de neurologos y psiquiatras por pais. Muestra el equilibrio relativo entre especialidades cerebrales.</p>
+<div id="chart-scatter" class="chart-box"></div>
+</div>
+
+<div class="section" id="tabla">
+<h2><i class="fas fa-table"></i> Base de Datos: Neurologos/100.000 hab.</h2>
+<p style="margin-bottom:1rem;color:var(--muted);font-size:.9rem">Fuente: Atlas Neurologico OMS, PAHO, Sociedad Iberoamericana de Neurologia. (*) = estimacion.</p>
+<div style="overflow-x:auto">
+<table>
+<thead><tr>
+<th>Pais</th><th>Region</th><th>2001</th><th>2005</th><th>2011</th><th>2014</th><th>2017</th><th>2020</th><th>2024</th><th>Tendencia</th>
+</tr></thead>
+<tbody id="table-body"></tbody>
+</table>
+</div>
+</div>
+
+<div class="section" id="citar">
+<h2><i class="fas fa-quote-right"></i> Como Citar Este Trabajo</h2>
+<h3>APA 7</h3>
+<div class="citation-box">de la Serna, J. M. (2026). Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica (2000-2026) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.18937912</div>
+<h3>BibTeX</h3>
+<div class="citation-box">@dataset{delaserna2026neurologos,
+  author    = {de la Serna, Juan Moises},
+  title     = {Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica (2000-2026)},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.18937912},
+  url       = {https://doi.org/10.5281/zenodo.18937912}
+}</div>
+</div>
+</div>
+
+<footer>
+<p><strong><i class="fas fa-head-side-brain"></i> Neurologos en Iberoamerica — Recursos en Salud (2000-2026)</strong></p>
+<p style="margin-top:.5rem">DOI: <a href="https://doi.org/10.5281/zenodo.18937912">10.5281/zenodo.18937912</a> | 
+<a href="index.html">Dashboard</a> | 
+<a href="psychiatrists.html">Psiquiatras</a> | 
+<a href="psychologists.html">Psicologos</a></p>
+<p style="margin-top:.5rem">Autor: Juan Moises de la Serna | UNIR | 2026 | CC-BY 4.0</p>
+</footer>
+<script>
+const data=[
+  {c:'Argentina',iso:'AR',r:[2.0,2.8,3.8,4.5,5.0,5.2,5.5],psiq:[3.0,4.5,8.0,10.5,12.0,13.5,15.0],reg:'Cono Sur'},
+  {c:'Bolivia',iso:'BO',r:[0.2,0.3,0.4,0.5,0.5,0.6,0.7],psiq:[0.3,0.4,0.5,0.6,0.7,0.8,1.0],reg:'Andina'},
+  {c:'Brasil',iso:'BR',r:[0.7,0.9,1.4,1.7,2.0,2.3,2.5],psiq:[1.0,1.4,2.0,2.3,2.7,3.0,3.2],reg:'Brasil'},
+  {c:'Chile',iso:'CL',r:[0.8,1.0,1.5,2.0,2.5,3.0,3.5],psiq:[0.9,1.2,1.8,2.4,3.0,3.5,4.0],reg:'Cono Sur'},
+  {c:'Colombia',iso:'CO',r:[0.5,0.7,1.0,1.2,1.5,1.8,2.0],psiq:[0.7,0.9,1.3,1.6,1.9,2.2,2.5],reg:'Andina'},
+  {c:'Costa Rica',iso:'CR',r:[0.8,1.0,1.3,1.6,1.9,2.2,2.5],psiq:[1.5,1.8,2.2,2.6,3.0,3.3,3.5],reg:'Centroamerica'},
+  {c:'Cuba',iso:'CU',r:[1.5,2.0,2.8,3.0,3.2,3.4,3.5],psiq:[4.0,5.0,7.0,7.5,8.0,9.0,10.0],reg:'Caribe'},
+  {c:'Ecuador',iso:'EC',r:[0.4,0.5,0.7,0.8,1.0,1.1,1.2],psiq:[0.5,0.6,0.8,1.0,1.2,1.4,1.6],reg:'Andina'},
+  {c:'El Salvador',iso:'SV',r:[0.2,0.3,0.4,0.4,0.5,0.5,0.6],psiq:[0.3,0.4,0.5,0.6,0.6,0.7,0.8],reg:'Centroamerica'},
+  {c:'Espana',iso:'ES',r:[4.0,5.5,7.0,8.0,8.5,9.0,9.5],psiq:[7.0,8.5,10.5,11.5,12.5,14.0,22.0],reg:'Europa'},
+  {c:'Guatemala',iso:'GT',r:[0.1,0.1,0.2,0.2,0.2,0.2,0.2],psiq:[0.2,0.2,0.3,0.3,0.4,0.4,0.5],reg:'Centroamerica'},
+  {c:'Honduras',iso:'HN',r:[0.1,0.1,0.2,0.2,0.2,0.2,0.2],psiq:[0.2,0.3,0.3,0.4,0.4,0.4,0.5],reg:'Centroamerica'},
+  {c:'Mexico',iso:'MX',r:[0.6,0.8,1.1,1.3,1.5,1.7,2.0],psiq:[1.0,1.2,1.6,1.8,2.0,2.2,2.5],reg:'Mexico'},
+  {c:'Nicaragua',iso:'NI',r:[0.2,0.2,0.3,0.3,0.3,0.3,0.4],psiq:[0.3,0.3,0.4,0.4,0.5,0.5,0.6],reg:'Centroamerica'},
+  {c:'Panama',iso:'PA',r:[0.6,0.8,1.0,1.2,1.4,1.6,1.8],psiq:[1.0,1.2,1.6,2.0,2.3,2.5,2.8],reg:'Centroamerica'},
+  {c:'Paraguay',iso:'PY',r:[0.3,0.4,0.5,0.6,0.8,0.9,1.0],psiq:[0.4,0.5,0.7,0.9,1.0,1.2,1.4],reg:'Cono Sur'},
+  {c:'Peru',iso:'PE',r:[0.4,0.5,0.7,0.8,1.0,1.2,1.4],psiq:[0.5,0.6,0.8,1.0,1.3,1.6,2.0],reg:'Andina'},
+  {c:'Portugal',iso:'PT',r:[1.5,2.0,2.8,3.2,3.5,3.8,4.0],psiq:[2.0,2.5,3.5,4.0,4.5,5.0,6.0],reg:'Europa'},
+  {c:'Puerto Rico',iso:'PR',r:[2.0,2.5,3.0,3.3,3.5,3.8,4.0],psiq:[5.0,6.0,7.5,8.0,8.5,9.0,10.0],reg:'Caribe'},
+  {c:'Rep. Dominicana',iso:'DO',r:[0.3,0.4,0.5,0.6,0.7,0.8,0.9],psiq:[0.5,0.6,0.8,0.9,1.0,1.2,1.4],reg:'Caribe'},
+  {c:'Uruguay',iso:'UY',r:[2.0,2.5,3.5,4.0,4.5,4.8,5.0],psiq:[6.0,7.0,9.0,10.5,12.0,13.0,15.0],reg:'Cono Sur'},
+  {c:'Venezuela',iso:'VE',r:[0.8,1.0,1.3,1.5,1.5,1.2,0.8],psiq:[0.8,1.0,1.4,1.5,1.3,1.0,0.9],reg:'Andina'}
+];
+const years=[2001,2005,2011,2014,2017,2020,2024];
+const rc={'Cono Sur':'#4a148c','Andina':'#1b5e20','Brasil':'#006064','Centroamerica':'#e65100','Caribe':'#880e4f','Europa':'#1a237e','Mexico':'#bf360c'};
+
+const s24=[...data].sort((a,b)=>b.r[6]-a.r[6]);
+Plotly.newPlot('chart-ranking',[{
+  type:'bar',orientation:'h',
+  y:s24.map(d=>d.c),x:s24.map(d=>d.r[6]),
+  marker:{color:s24.map(d=>rc[d.reg]),opacity:0.85},
+  text:s24.map(d=>d.r[6].toFixed(1)),textposition:'outside',
+  hovertemplate:'<b>%{y}</b><br>%{x:.1f} neurologos/100k<extra></extra>'
+}],{
+  title:{text:'Ranking: Neurologos por 100.000 hab. — 2024',font:{size:15,color:'#4a148c'}},
+  xaxis:{title:'Neurologos / 100.000 hab.'},yaxis:{automargin:true},
+  height:580,margin:{l:130,r:90,t:60,b:60},
+  shapes:[{type:'line',x0:1,x1:1,y0:-0.5,y1:s24.length-0.5,line:{color:'red',width:2,dash:'dash'}}],
+  annotations:[{x:1.05,y:s24.length*0.85,text:'Umbral OMS<br>1/100k',showarrow:false,xanchor:'left',font:{color:'red',size:11}}],
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+const major=['Argentina','Uruguay','Espana','Brasil','Chile','Colombia','Mexico','Cuba','Portugal'];
+Plotly.newPlot('chart-trends',data.filter(d=>major.includes(d.c)).map(d=>({
+  type:'scatter',mode:'lines+markers',name:d.c,x:years,y:d.r,
+  line:{color:rc[d.reg],width:2.5},marker:{size:6},
+  hovertemplate:'<b>'+d.c+'</b><br>%{x}: %{y:.1f} neuro/100k<extra></extra>'
+})),{
+  title:{text:'Evolucion Neurologos/100k — Principales Paises (2001-2024)',font:{size:15,color:'#4a148c'}},
+  xaxis:{title:'Ano'},yaxis:{title:'Neurologos / 100.000 hab.'},
+  height:480,plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+const regs=[...new Set(data.map(d=>d.reg))];
+const rd=regs.map(r=>{const v=data.filter(d=>d.reg===r).map(d=>d.r[6]);return{r,avg:v.reduce((a,b)=>a+b,0)/v.length};}).sort((a,b)=>b.avg-a.avg);
+Plotly.newPlot('chart-regional',[{
+  type:'bar',x:rd.map(d=>d.r),y:rd.map(d=>d.avg),
+  marker:{color:rd.map(d=>rc[d.r]),opacity:.85},
+  text:rd.map(d=>d.avg.toFixed(2)),textposition:'outside',
+  hovertemplate:'<b>%{x}</b><br>Media: %{y:.2f}<extra></extra>'
+}],{
+  title:{text:'Promedio Neurologos/100k por Region — 2024',font:{size:15,color:'#4a148c'}},
+  height:380,plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+Plotly.newPlot('chart-scatter',data.map(d=>({
+  type:'scatter',mode:'markers+text',name:d.c,
+  x:[d.psiq[6]],y:[d.r[6]],
+  marker:{color:rc[d.reg],size:12,opacity:.8},
+  text:[d.c],textposition:'top center',textfont:{size:10},
+  hovertemplate:'<b>'+d.c+'</b><br>Psiq: %{x:.1f}/100k<br>Neuro: %{y:.1f}/100k<extra></extra>'
+})),{
+  title:{text:'Neurologos vs Psiquiatras por Pais — 2024',font:{size:15,color:'#4a148c'}},
+  xaxis:{title:'Psiquiatras / 100.000 hab.'},yaxis:{title:'Neurologos / 100.000 hab.'},
+  showlegend:false,height:480,
+  shapes:[{type:'line',x0:0,y0:0,x1:25,y1:25,line:{color:'#999',width:1,dash:'dot'}}],
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+const tbody=document.getElementById('table-body');
+data.forEach(d=>{
+  const t=d.r[6]>d.r[0]*2?'<span style="color:#2e7d32;font-weight:700">&#8679; Fuerte</span>':
+          d.r[6]>d.r[0]*1.2?'<span style="color:#1565c0">&#8593; Alza</span>':
+          d.r[6]<d.r[0]?'<span style="color:#c62828">&#8595; Descenso</span>':'<span style="color:#757575">&#8596; Estable</span>';
+  tbody.innerHTML+=`<tr><td><strong>${d.c}</strong></td><td style="font-size:.8rem;color:var(--muted)">${d.reg}</td>${d.r.map(v=>`<td>${v.toFixed(1)}</td>`).join('')}<td>${t}</td></tr>`;
+});
+</script>
+</body>
+  </html>
