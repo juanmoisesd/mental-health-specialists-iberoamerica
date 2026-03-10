@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centroamerica: Deficit de Especialistas en Salud Mental 2000-2026</title>
+<meta name="description" content="Analisis del deficit critico de psiquiatras, psicologos y neurologos en Centroamerica: Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica y Panama. 2000-2026.">
+<meta name="keywords" content="Centroamerica, salud mental, deficit psiquiatras, Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica, Panama, Atlas OMS">
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#bf360c;--secondary:#d84315;--light:#fbe9e7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#fafafa;line-height:1.7;color:#212121}
+header{background:linear-gradient(135deg,#bf360c,#d84315);color:#fff;padding:2.5rem 2rem;text-align:center}
+header h1{font-size:1.9rem}
+nav{background:#fff;border-bottom:3px solid var(--primary);padding:.7rem;position:sticky;top:0;z-index:100;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+nav a{color:var(--primary);text-decoration:none;font-weight:600;font-size:.85rem;padding:.3rem .8rem;border-radius:4px}
+nav a:hover{background:var(--light)}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+.section{background:#fff;border-radius:12px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.section h2{color:var(--primary);font-size:1.7rem;margin-bottom:1.5rem;border-bottom:3px solid #1565c0;padding-bottom:.5rem}
+.chart-box{height:460px;margin:1.5rem 0}
+.country-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin:1.5rem 0}
+.cc{border-radius:12px;padding:1.5rem;color:#fff}
+.cc.hi{background:linear-gradient(135deg,#1b5e20,#2e7d32)}
+.cc.mi{background:linear-gradient(135deg,#e65100,#f57c00)}
+.cc.lo{background:linear-gradient(135deg,#b71c1c,#c62828)}
+.cc h3{font-size:1rem;margin-bottom:.7rem}
+.cc .sv{font-size:1.4rem;font-weight:700}
+.cc .sl{font-size:.78rem;opacity:.9}
+.alert{background:#ffebee;border-left:4px solid #c62828;padding:1rem 1.5rem;border-radius:0 8px 8px 0;margin:1rem 0}
+.alert strong{color:#b71c1c}
+.finding{background:#fbe9e7;border-left:4px solid var(--primary);padding:1rem 1.5rem;border-radius:0 8px 8px 0;margin:1rem 0}
+.finding strong{color:var(--primary)}
+.citation-box{background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:1.5rem;font-family:monospace;font-size:.83rem;white-space:pre-wrap}
+footer{background:var(--primary);color:#fff;text-align:center;padding:1.5rem}
+footer a{color:#ffab91;text-decoration:none}
+.np{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.np a{background:rgba(255,255,255,.15);color:#fff;padding:.3rem .9rem;border-radius:20px;text-decoration:none;font-size:.83rem}
+</style>
+</head>
+<body>
+<header>
+<p style="opacity:.7;font-size:.85rem;margin-bottom:.3rem">Zona Critica | Centroamerica | 2000-2026</p>
+<h1><i class="fas fa-exclamation-triangle"></i> Centroamerica: Crisis de Recursos en Salud Mental</h1>
+<p style="opacity:.9;margin-top:.4rem;font-size:.95rem">Guatemala, Honduras, El Salvador, Nicaragua, Costa Rica y Panama</p>
+<div class="np">
+<a href="index.html">Dashboard</a>
+<a href="cono-sur.html">Cono Sur</a>
+<a href="andina.html">Region Andina</a>
+<a href="comparisons.html">Comparaciones</a>
+</div>
+</header>
+<nav>
+<a href="#crisis">Alerta</a>
+<a href="#paises">Por Pais</a>
+<a href="#tendencias">Tendencias</a>
+<a href="#brechas">Brechas</a>
+<a href="#soluciones">Soluciones</a>
+<a href="#citar">Citar</a>
+</nav>
+<div class="container">
+<div class="section" id="crisis">
+<h2><i class="fas fa-exclamation-circle"></i> Alerta: Deficit Critico de Especialistas</h2>
+<div class="alert"><strong>Situacion Critica:</strong> Centroamerica (excluida Costa Rica) presenta las densidades mas bajas de toda Iberoamerica. Guatemala y Honduras tienen 0.5 psiquiatras/100k — 30 veces menos que Argentina. Un psiquiatra atiende mas de 200.000 personas. La brecha de tratamiento en epilepsia supera el 75%.</div>
+<div class="country-grid">
+<div class="cc hi"><h3>Costa Rica</h3><div class="sv">3.5</div><div class="sl">Psiquiatras/100k ✓ Meta OMS</div><br><div class="sv">22.0</div><div class="sl">Psicologos/100k</div></div>
+<div class="cc mi"><h3>Panama</h3><div class="sv">2.8</div><div class="sl">Psiquiatras/100k — cerca meta</div><br><div class="sv">16.0</div><div class="sl">Psicologos/100k</div></div>
+<div class="cc lo"><h3>El Salvador</h3><div class="sv">0.8</div><div class="sl">Psiquiatras/100k ✗ deficit</div><br><div class="sv">3.5</div><div class="sl">Psicologos/100k</div></div>
+<div class="cc lo"><h3>Nicaragua</h3><div class="sv">0.6</div><div class="sl">Psiquiatras/100k ✗ critico</div><br><div class="sv">2.5</div><div class="sl">Psicologos/100k</div></div>
+<div class="cc lo"><h3>Guatemala</h3><div class="sv">0.5</div><div class="sl">Psiquiatras/100k ✗ critico</div><br><div class="sv">1.5</div><div class="sl">Psicologos/100k</div></div>
+<div class="cc lo"><h3>Honduras</h3><div class="sv">0.5</div><div class="sl">Psiquiatras/100k ✗ critico</div><br><div class="sv">1.2</div><div class="sl">Psicologos/100k</div></div>
+</div>
+</div>
+<div class="section" id="paises">
+<h2><i class="fas fa-chart-bar"></i> Comparacion por Pais 2024</h2>
+<div id="chart-countries" class="chart-box"></div>
+</div>
+<div class="section" id="tendencias">
+<h2><i class="fas fa-chart-line"></i> Evolucion Psiquiatras/100k (2001-2024)</h2>
+<div id="chart-trends" class="chart-box"></div>
+</div>
+<div class="section" id="brechas">
+<h2><i class="fas fa-ruler-horizontal"></i> Centroamerica vs la Region</h2>
+<div id="chart-vs" class="chart-box" style="height:380px"></div>
+<div class="finding"><strong>Costa Rica como excepcion:</strong> Con un PIB per capita 3-4x mayor y un sistema universal (CCSS), Costa Rica supera la meta OMS. Demuestra que la inversion en salud es el factor clave.</div>
+<div class="finding"><strong>El Salvador y violencia:</strong> Alta prevalencia de TEPT por violencia hace que el deficit tenga consecuencias graves. Solo 0.8 psiquiatras/100k para atender una de las tasas de violencia mas altas del mundo.</div>
+<div class="finding"><strong>Guatemala: mayor poblacion, menor cobertura:</strong> 18 millones de habitantes y solo 0.5 psiquiatras/100k. La dispersion geografica y diversidad etnico-linguistica (22 idiomas mayas) dificultan el acceso.</div>
+</div>
+<div class="section" id="soluciones">
+<h2><i class="fas fa-lightbulb"></i> Iniciativas y Soluciones</h2>
+<div class="finding"><strong>Telepsiquiatria:</strong> Proyectos piloto en Guatemala y Honduras muestran viabilidad. La telepsiquiatria permite a escasos especialistas multiplicar su alcance a areas rurales.</div>
+<div class="finding"><strong>mhGAP OMS:</strong> La OPS implementa el modelo mhGAP (Mental Health Gap Action Programme) para capacitar medicos generales en diagnostico y tratamiento basico de trastornos mentales, epilepsia y abuso de sustancias.</div>
+<div class="finding"><strong>Plan Mesoamerica:</strong> El Plan Mesoamerica 2030 incluye componentes de fortalecimiento de salud mental con apoyo del BID y fondos regionales, con metas especificas para paises de bajo recurso.</div>
+</div>
+<div class="section" id="citar">
+<h2><i class="fas fa-quote-right"></i> Citar</h2>
+<div class="citation-box">de la Serna, J. M. (2026). Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica (2000-2026) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.18937912</div>
+</div>
+</div>
+<footer>
+<p>Centroamerica | Salud Mental | DOI: <a href="https://doi.org/10.5281/zenodo.18937912">10.5281/zenodo.18937912</a></p>
+<p style="margin-top:.4rem"><a href="index.html">Dashboard</a> | <a href="cono-sur.html">Cono Sur</a> | <a href="andina.html">Andina</a> | Juan Moises de la Serna | UNIR | 2026</p>
+</footer>
+<script>
+const years=[2001,2005,2011,2014,2017,2020,2024];
+const ca=[
+  {c:'Costa Rica',col:'#1b5e20',psiq:[1.5,1.8,2.2,2.6,3.0,3.3,3.5],psic:[7,9,12,14,17,20,22],neuro:[0.8,1.0,1.3,1.6,1.9,2.2,2.5]},
+  {c:'Panama',col:'#2e7d32',psiq:[1.0,1.2,1.6,2.0,2.3,2.5,2.8],psic:[5,6,8,10,12,14,16],neuro:[0.6,0.8,1.0,1.2,1.4,1.6,1.8]},
+  {c:'El Salvador',col:'#e65100',psiq:[0.3,0.4,0.5,0.6,0.6,0.7,0.8],psic:[1,1.5,2,2.5,2.8,3,3.5],neuro:[0.2,0.3,0.4,0.4,0.5,0.5,0.6]},
+  {c:'Nicaragua',col:'#f57c00',psiq:[0.3,0.3,0.4,0.4,0.5,0.5,0.6],psic:[1,1.2,1.5,1.8,2,2,2.5],neuro:[0.2,0.2,0.3,0.3,0.3,0.3,0.4]},
+  {c:'Guatemala',col:'#b71c1c',psiq:[0.2,0.2,0.3,0.3,0.4,0.4,0.5],psic:[0.8,1,1.2,1.3,1.4,1.5,1.5],neuro:[0.1,0.1,0.2,0.2,0.2,0.2,0.2]},
+  {c:'Honduras',col:'#c62828',psiq:[0.2,0.3,0.3,0.4,0.4,0.4,0.5],psic:[0.7,0.9,1,1.1,1.2,1.2,1.2],neuro:[0.1,0.1,0.2,0.2,0.2,0.2,0.2]}
+];
+Plotly.newPlot('chart-countries',[
+  {type:'bar',name:'Psiq',x:ca.map(d=>d.c),y:ca.map(d=>d.psiq[6]),marker:{color:'#1a237e'}},
+  {type:'bar',name:'Psic',x:ca.map(d=>d.c),y:ca.map(d=>d.psic[6]),marker:{color:'#2e7d32'}},
+  {type:'bar',name:'Neuro',x:ca.map(d=>d.c),y:ca.map(d=>d.neuro[6]),marker:{color:'#4a148c'}}
+],{title:{text:'Especialistas/100k — Centroamerica 2024',font:{size:15,color:'#bf360c'}},
+  barmode:'group',yaxis:{title:'Especialistas/100k'},height:460,
+  shapes:[{type:'line',x0:-0.5,x1:5.5,y0:3,y1:3,line:{color:'red',width:2,dash:'dash'}}],
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff',legend:{orientation:'h'}},{responsive:true});
+Plotly.newPlot('chart-trends',ca.map(d=>({
+  type:'scatter',mode:'lines+markers',name:d.c,x:years,y:d.psiq,
+  line:{color:d.col,width:2.5},marker:{size:6}
+})),{title:{text:'Psiquiatras/100k — Centroamerica 2001-2024',font:{size:15,color:'#bf360c'}},
+  xaxis:{title:'Ano'},yaxis:{title:'Psiquiatras/100k'},height:460,
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'},{responsive:true});
+Plotly.newPlot('chart-vs',[{
+  type:'bar',x:['Costa Rica','Panama','El Salv.','Nicaragua','Guatemala','Honduras','Media IbAm'],
+  y:[3.5,2.8,0.8,0.6,0.5,0.5,2.8],
+  marker:{color:['#1b5e20','#2e7d32','#e65100','#f57c00','#b71c1c','#c62828','#999'],opacity:.85},
+  text:[3.5,2.8,0.8,0.6,0.5,0.5,2.8].map(v=>v.toFixed(1)),textposition:'outside'
+}],{title:{text:'Psiquiatras/100k: Centroamerica vs Media Regional (2024)',font:{size:14,color:'#bf360c'}},
+  yaxis:{title:'Psiquiatras/100k'},height:380,
+  shapes:[{type:'line',x0:-0.5,x1:6.5,y0:3,y1:3,line:{color:'red',width:2,dash:'dash'}}],
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'},{responsive:true});
+</script>
+</body>
+  </html>
