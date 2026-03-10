@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cono Sur: Especialistas en Salud Mental 2000-2026 | Argentina, Chile, Uruguay, Paraguay</title>
+<meta name="description" content="Analisis de psiquiatras, psicologos y neurologos en el Cono Sur iberoamericano: Argentina, Chile, Uruguay y Paraguay. 2000-2026.">
+<meta name="keywords" content="Cono Sur, salud mental, psiquiatras, psicologos, Argentina, Chile, Uruguay, Paraguay, Atlas OMS">
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--primary:#1a237e;--accent:#e53935;--light:#e8eaf6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#fafafa;line-height:1.7;color:#212121}
+header{background:linear-gradient(135deg,#1a237e,#283593);color:#fff;padding:2.5rem 2rem;text-align:center}
+header h1{font-size:2rem}
+nav{background:#fff;border-bottom:3px solid var(--primary);padding:.7rem;position:sticky;top:0;z-index:100;display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+nav a{color:var(--primary);text-decoration:none;font-weight:600;font-size:.85rem;padding:.3rem .8rem;border-radius:4px}
+nav a:hover{background:var(--light)}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+.section{background:#fff;border-radius:12px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.section h2{color:var(--primary);font-size:1.7rem;margin-bottom:1.5rem;border-bottom:3px solid var(--accent);padding-bottom:.5rem}
+.chart-box{height:460px;margin:1.5rem 0}
+.country-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin:1.5rem 0}
+.country-card{background:linear-gradient(135deg,var(--primary),#283593);color:#fff;border-radius:12px;padding:1.5rem}
+.country-card h3{font-size:1.2rem;margin-bottom:1rem}
+.country-card .stat{margin:.4rem 0}
+.country-card .stat-val{font-size:1.5rem;font-weight:700}
+.country-card .stat-label{font-size:.82rem;opacity:.85}
+.finding{background:#e8eaf6;border-left:4px solid var(--primary);padding:1rem 1.5rem;border-radius:0 8px 8px 0;margin:1rem 0}
+.citation-box{background:#f5f5f5;border:1px solid #ddd;border-radius:8px;padding:1.5rem;font-family:monospace;font-size:.83rem;white-space:pre-wrap}
+footer{background:var(--primary);color:#fff;text-align:center;padding:1.5rem}
+footer a{color:#90caf9;text-decoration:none}
+.nav-pages{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1rem}
+.nav-pages a{background:rgba(255,255,255,.15);color:#fff;padding:.3rem .9rem;border-radius:20px;text-decoration:none;font-size:.83rem}
+</style>
+</head>
+<body>
+<header>
+<p style="opacity:.7;font-size:.85rem;margin-bottom:.3rem">Region | Cono Sur | 2000-2026</p>
+<h1><i class="fas fa-map-marker-alt"></i> Cono Sur: Especialistas en Salud Mental</h1>
+<p style="opacity:.9;margin-top:.4rem">Argentina, Chile, Uruguay y Paraguay — La region con mayor densidad de especialistas en Iberoamerica</p>
+<div class="nav-pages">
+<a href="index.html">Dashboard</a>
+<a href="centroamerica.html">Centroamerica</a>
+<a href="andina.html">Region Andina</a>
+<a href="comparisons.html">Comparaciones</a>
+</div>
+</header>
+<nav>
+<a href="#resumen">Resumen</a>
+<a href="#paises">Por Pais</a>
+<a href="#tendencias">Tendencias</a>
+<a href="#comparativa">Comparativa</a>
+<a href="#hallazgos">Hallazgos</a>
+<a href="#citar">Citar</a>
+</nav>
+<div class="container">
+
+<div class="section" id="resumen">
+<h2><i class="fas fa-star"></i> El Cono Sur: Lider Regional en Salud Mental</h2>
+<p>El Cono Sur iberoamericano (Argentina, Chile, Uruguay y Paraguay) concentra los sistemas de salud mental mas desarrollados de la region. Argentina y Uruguay ostentan algunas de las mayores densidades de psiquiatras y psicologos del mundo. La herencia psicoanalitica, la expansion universitaria y las reformas sanitarias han contribuido a este desarrollo excepcional.</p>
+<div class="country-grid">
+<div class="country-card">
+<h3><i class="fas fa-flag"></i> Argentina</h3>
+<div class="stat"><span class="stat-val">15.0</span><br><span class="stat-label">Psiquiatras/100k (2024) — 3er mundo</span></div>
+<div class="stat"><span class="stat-val">85.0</span><br><span class="stat-label">Psicologos/100k — Record mundial</span></div>
+<div class="stat"><span class="stat-val">5.5</span><br><span class="stat-label">Neurologos/100k</span></div>
+</div>
+<div class="country-card">
+<h3><i class="fas fa-flag"></i> Uruguay</h3>
+<div class="stat"><span class="stat-val">15.0</span><br><span class="stat-label">Psiquiatras/100k (2024)</span></div>
+<div class="stat"><span class="stat-val">60.0</span><br><span class="stat-label">Psicologos/100k</span></div>
+<div class="stat"><span class="stat-val">5.0</span><br><span class="stat-label">Neurologos/100k</span></div>
+</div>
+<div class="country-card">
+<h3><i class="fas fa-flag"></i> Chile</h3>
+<div class="stat"><span class="stat-val">4.0</span><br><span class="stat-label">Psiquiatras/100k (2024)</span></div>
+<div class="stat"><span class="stat-val">30.0</span><br><span class="stat-label">Psicologos/100k</span></div>
+<div class="stat"><span class="stat-val">3.5</span><br><span class="stat-label">Neurologos/100k</span></div>
+</div>
+<div class="country-card" style="background:linear-gradient(135deg,#283593,#3949ab)">
+<h3><i class="fas fa-flag"></i> Paraguay</h3>
+<div class="stat"><span class="stat-val">1.4</span><br><span class="stat-label">Psiquiatras/100k (2024)</span></div>
+<div class="stat"><span class="stat-val">13.0</span><br><span class="stat-label">Psicologos/100k</span></div>
+<div class="stat"><span class="stat-val">1.0</span><br><span class="stat-label">Neurologos/100k</span></div>
+</div>
+</div>
+</div>
+
+<div class="section" id="paises">
+<h2><i class="fas fa-chart-bar"></i> Comparacion por Pais (2024)</h2>
+<div id="chart-countries" class="chart-box"></div>
+</div>
+
+<div class="section" id="tendencias">
+<h2><i class="fas fa-chart-line"></i> Tendencias Temporales (2001-2024)</h2>
+<div id="chart-psiq-trend" class="chart-box"></div>
+<h3>Psicologos — Cono Sur 2001-2024</h3>
+<div id="chart-psic-trend" class="chart-box"></div>
+</div>
+
+<div class="section" id="comparativa">
+<h2><i class="fas fa-balance-scale"></i> Cono Sur vs Media Iberoamerica</h2>
+<div id="chart-vs-regional" class="chart-box" style="height:380px"></div>
+</div>
+
+<div class="section" id="hallazgos">
+<h2><i class="fas fa-lightbulb"></i> Hallazgos Clave</h2>
+<div class="finding"><strong>Argentina:</strong> Con 85 psicologos/100k, supera ampliamente a cualquier pais del mundo. La cultura psicoanalitica es parte de la identidad nacional. Buenos Aires tiene mas psicologos que paises enteros como Bolivia o Paraguay.</div>
+<div class="finding"><strong>Uruguay:</strong> El sistema de salud universal del Fonasa incluye psicologos en el primer nivel de atencion. 15 psiquiatras/100k refleja un sistema publico robusto y bien financiado.</div>
+<div class="finding"><strong>Chile:</strong> La reforma de salud mental de 2001 (Ley 20.584 y Plan Nacional de Salud Mental) impulso el crecimiento sostenido. Chile muestra el mayor crecimiento porcentual de la region en psiquiatras (+280% entre 2001-2024).</div>
+<div class="finding"><strong>Paraguay:</strong> Es el pais con menor densidad del Cono Sur, pero muestra crecimiento positivo. La expansion universitaria y el Plan Nacional de Salud Mental 2020-2030 son factores positivos para el futuro.</div>
+</div>
+
+<div class="section" id="citar">
+<h2><i class="fas fa-quote-right"></i> Citar</h2>
+<div class="citation-box">de la Serna, J. M. (2026). Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica (2000-2026) [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.18937912</div>
+</div>
+</div>
+
+<footer>
+<p>Cono Sur | Especialistas Salud Mental | DOI: <a href="https://doi.org/10.5281/zenodo.18937912">10.5281/zenodo.18937912</a></p>
+<p style="margin-top:.4rem"><a href="index.html">Dashboard</a> | <a href="comparisons.html">Comparaciones</a> | <a href="centroamerica.html">Centroamerica</a> | Juan Moises de la Serna | UNIR | 2026</p>
+</footer>
+
+<script>
+const years=[2001,2005,2011,2014,2017,2020,2024];
+const cs=[
+  {c:'Argentina',col:'#1a237e',psiq:[3.0,4.5,8.0,10.5,12.0,13.5,15.0],psic:[30,42,60,70,78,82,85],neuro:[2.0,2.8,3.8,4.5,5.0,5.2,5.5]},
+  {c:'Uruguay',col:'#283593',psiq:[6.0,7.0,9.0,10.5,12.0,13.0,15.0],psic:[20,28,38,45,52,56,60],neuro:[2.0,2.5,3.5,4.0,4.5,4.8,5.0]},
+  {c:'Chile',col:'#3949ab',psiq:[0.9,1.2,1.8,2.4,3.0,3.5,4.0],psic:[6,9,14,18,22,26,30],neuro:[0.8,1.0,1.5,2.0,2.5,3.0,3.5]},
+  {c:'Paraguay',col:'#5c6bc0',psiq:[0.4,0.5,0.7,0.9,1.0,1.2,1.4],psic:[2,3,5,7,9,11,13],neuro:[0.3,0.4,0.5,0.6,0.8,0.9,1.0]}
+];
+const regAvg={psiq:[1.2,1.5,2.0,2.3,2.5,2.6,2.8],psic:[5.5,7,10,13,15,16,17.8],neuro:[0.8,1.0,1.3,1.6,1.8,2.0,2.1]};
+
+// Countries bar chart
+const countries=['Argentina','Uruguay','Chile','Paraguay'];
+const v2024=cs.map(d=>({psiq:d.psiq[6],psic:d.psic[6],neuro:d.neuro[6]}));
+Plotly.newPlot('chart-countries',[
+  {type:'bar',name:'Psiq',x:countries,y:v2024.map(d=>d.psiq),marker:{color:'#1a237e'}},
+  {type:'bar',name:'Psic',x:countries,y:v2024.map(d=>d.psic),marker:{color:'#2e7d32'}},
+  {type:'bar',name:'Neuro',x:countries,y:v2024.map(d=>d.neuro),marker:{color:'#4a148c'}}
+],{
+  title:{text:'Especialistas/100k — Cono Sur 2024',font:{size:15,color:'#1a237e'}},
+  barmode:'group',yaxis:{title:'Especialistas/100k'},height:460,
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff',legend:{orientation:'h'}
+},{responsive:true});
+
+// Psiq trends
+Plotly.newPlot('chart-psiq-trend',cs.map(d=>({
+  type:'scatter',mode:'lines+markers',name:d.c,x:years,y:d.psiq,
+  line:{color:d.col,width:2.5},marker:{size:6},
+  hovertemplate:'<b>'+d.c+'</b> %{x}: %{y:.1f} psiq/100k<extra></extra>'
+})).concat([{
+  type:'scatter',mode:'lines',name:'Media Iberoa.',x:years,y:regAvg.psiq,
+  line:{color:'#999',width:2,dash:'dash'},
+  hovertemplate:'Media: %{y:.1f}<extra></extra>'
+}]),{
+  title:{text:'Psiquiatras/100k — Cono Sur vs Media Regional (2001-2024)',font:{size:15,color:'#1a237e'}},
+  xaxis:{title:'Ano'},yaxis:{title:'Psiquiatras/100k'},height:460,
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+// Psic trends  
+Plotly.newPlot('chart-psic-trend',cs.map(d=>({
+  type:'scatter',mode:'lines+markers',name:d.c,x:years,y:d.psic,
+  line:{color:d.col,width:2.5},marker:{size:6}
+})).concat([{
+  type:'scatter',mode:'lines',name:'Media Iberoa.',x:years,y:regAvg.psic,
+  line:{color:'#999',width:2,dash:'dash'}
+}]),{
+  title:{text:'Psicologos/100k — Cono Sur vs Media Regional (2001-2024)',font:{size:15,color:'#1a237e'}},
+  xaxis:{title:'Ano'},yaxis:{title:'Psicologos/100k'},height:460,
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+
+// Vs regional
+const labels=['Psiq Arg','Psiq Uru','Psiq Chi','Psiq Par','Psiq Media','Psic Arg','Psic Uru','Psic Chi','Psic Par','Psic Media'];
+const vals=[15.0,15.0,4.0,1.4,2.8,85.0,60.0,30.0,13.0,17.8];
+const colors=['#1a237e','#283593','#3949ab','#5c6bc0','#aaa','#2e7d32','#388e3c','#43a047','#66bb6a','#aaa'];
+Plotly.newPlot('chart-vs-regional',[{
+  type:'bar',x:labels,y:vals,marker:{color:colors,opacity:.85},
+  hovertemplate:'<b>%{x}</b>: %{y:.1f}/100k<extra></extra>'
+}],{
+  title:{text:'Cono Sur vs Media Iberoamerica (2024)',font:{size:14,color:'#1a237e'}},
+  yaxis:{title:'Especialistas/100k'},height:380,
+  plot_bgcolor:'#fafafa',paper_bgcolor:'#fff'
+},{responsive:true});
+</script>
+</body>
+</html>
