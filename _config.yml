@@ -1,0 +1,18 @@
+title: "Mental Health Specialists in Ibero-America Dashboard"
+description: "Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813"
+author: "Juan Moisés de la Serna Tuya"
+url: "https://juanmoisesd.github.io"
+baseurl: "/mental-health-specialists-iberoamerica"
+theme: minima
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+social:
+  name: Juan Moisés de la Serna Tuya
+  links:
+    - https://orcid.org/0000-0002-8401-8018
+    - https://juanmoisesdelaserna.es
+    - https://github.com/juanmoisesd
+doi: 10.5281/zenodo.18984813
+show_excerpts: true
