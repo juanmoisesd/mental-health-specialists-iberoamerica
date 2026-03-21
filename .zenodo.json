@@ -1,0 +1,40 @@
+{
+  "title": "Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813",
+  "description": "Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "cc-zero",
+  "creators": [
+    {
+      "name": "de la Serna Tuya, Juan Moisés",
+      "affiliation": "Universidad Internacional de La Rioja (UNIR)",
+      "orcid": "0000-0002-8401-8018"
+    }
+  ],
+  "keywords": [
+    "dashboard",
+    "ibero-america",
+    "mental-health",
+    "open-data",
+    "public-health",
+    "specialists",
+    "zenodo",
+    "open-data",
+    "dataset",
+    "research"
+  ],
+  "language": "eng",
+  "communities": [
+    {
+      "identifier": "zenodo"
+    }
+  ],
+  "grants": [],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/juanmoisesd/mental-health-specialists-iberoamerica",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
