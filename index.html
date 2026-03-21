@@ -1,440 +1,62 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Especialistas en Salud Mental por 100.000 hab. en Iberoamerica (2000-2026)</title>
-<meta name="description" content="Base de datos interactiva: Psiquiatras, Psicologos, Neurologos por 100.000 habitantes en 22 paises iberoamericanos. Datos 2000-2026.">
-<meta name="keywords" content="psiquiatras, psicologos, neurologos, salud mental, Iberoamerica, America Latina, Espana, Portugal, dataset">
-<meta name="author" content="de la Serna, Juan Moises - Universidad Internacional de La Rioja (UNIR)">
-<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root{--primary:#1a237e;--secondary:#283593;--accent:#e53935;--accent2:#43a047;--accent3:#fb8c00;--light:#f5f5f5;--white:#fff;--text:#212121;--text-light:#757575;--border:#e0e0e0;--card-shadow:0 4px 20px rgba(0,0,0,.08)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--light);color:var(--text);line-height:1.6}
-header{background:linear-gradient(135deg,var(--primary) 0%,#4a148c 100%);color:#fff;padding:40px 20px;text-align:center}
-header h1{font-size:clamp(1.3rem,3vw,2rem);font-weight:700;margin-bottom:10px}
-header p{font-size:.95rem;opacity:.85;max-width:800px;margin:0 auto 14px}
-.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
-.badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 14px;border-radius:20px;font-size:.82rem;text-decoration:none;transition:all .2s}
-.badge:hover{background:rgba(255,255,255,.25)}
-nav{background:var(--secondary);padding:0 20px;display:flex;justify-content:center;overflow-x:auto;position:sticky;top:0;z-index:100}
-nav a{color:rgba(255,255,255,.8);text-decoration:none;padding:14px 16px;font-size:.85rem;white-space:nowrap;transition:all .2s;border-bottom:3px solid transparent}
-nav a:hover,nav a.active{color:#fff;border-bottom-color:var(--accent3)}
-.container{max-width:1400px;margin:0 auto;padding:30px 20px}
-.section{margin-bottom:50px}
-.section-title{font-size:1.5rem;font-weight:700;color:var(--primary);margin-bottom:8px;padding-bottom:8px;border-bottom:3px solid var(--accent3)}
-.section-subtitle{color:var(--text-light);font-size:.95rem;margin-bottom:24px}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:40px}
-.stat-card{background:#fff;border-radius:12px;padding:24px;box-shadow:var(--card-shadow);border-left:5px solid var(--primary);transition:transform .2s}
-.stat-card:hover{transform:translateY(-3px)}
-.stat-card:nth-child(2){border-left-color:var(--accent2)}.stat-card:nth-child(3){border-left-color:var(--accent3)}.stat-card:nth-child(4){border-left-color:var(--accent)}
-.stat-value{font-size:2.2rem;font-weight:800;color:var(--primary)}
-.stat-card:nth-child(2) .stat-value{color:var(--accent2)}.stat-card:nth-child(3) .stat-value{color:var(--accent3)}.stat-card:nth-child(4) .stat-value{color:var(--accent)}
-.stat-label{font-size:.88rem;color:var(--text-light);margin-top:4px}
-.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(560px,1fr));gap:24px;margin-bottom:30px}
-.chart-card{background:#fff;border-radius:12px;padding:24px;box-shadow:var(--card-shadow)}
-.chart-card h3{font-size:1rem;font-weight:600;color:var(--primary);margin-bottom:5px}
-.chart-card p,.chart-full p{font-size:.82rem;color:var(--text-light);margin-bottom:14px}
-.chart-full{background:#fff;border-radius:12px;padding:24px;box-shadow:var(--card-shadow);margin-bottom:30px}
-.chart-full h3{font-size:1rem;font-weight:600;color:var(--primary);margin-bottom:5px}
-.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:16px;margin-bottom:30px}
-.country-card{background:#fff;border-radius:10px;padding:18px;box-shadow:var(--card-shadow);color:var(--text);transition:all .2s;border-top:4px solid var(--primary)}
-.country-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
-.country-flag{font-size:2rem;margin-bottom:8px}
-.country-name{font-weight:600;font-size:.92rem;margin-bottom:8px}
-.country-stat{display:flex;justify-content:space-between;font-size:.76rem;color:var(--text-light);margin-top:3px}
-.country-stat-val{font-weight:600;color:var(--text)}
-.abstract-box{background:#fff;border-radius:12px;padding:32px;box-shadow:var(--card-shadow);border-left:5px solid var(--primary);margin-bottom:30px}
-.abstract-box h2{font-size:1.15rem;color:var(--primary);margin-bottom:10px}
-.abstract-box p{color:var(--text);line-height:1.8;margin-bottom:10px}
-.methods-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:30px}
-.method-card{background:#fff;border-radius:12px;padding:24px;box-shadow:var(--card-shadow)}
-.method-card h3{color:var(--primary);font-size:.95rem;margin-bottom:10px}
-.method-card ul{padding-left:18px;color:var(--text);font-size:.87rem}
-.method-card ul li{margin-bottom:5px}
-.citation-box{background:#1a237e;color:#fff;border-radius:12px;padding:24px;margin-bottom:16px}
-.citation-box h3{font-size:.95rem;margin-bottom:10px;opacity:.85}
-.citation-text{background:rgba(255,255,255,.1);border-radius:8px;padding:14px;font-family:monospace;font-size:.85rem;line-height:1.7}
-.filter-bar{background:#fff;border-radius:12px;padding:18px 22px;box-shadow:var(--card-shadow);margin-bottom:22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.filter-bar label{font-size:.85rem;font-weight:600;color:var(--text-light)}
-.filter-bar select{padding:7px 12px;border:1px solid var(--border);border-radius:8px;font-size:.85rem;color:var(--text);background:#fff}
-.filter-bar button{padding:8px 18px;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.85rem;transition:background .2s}
-.filter-bar button:hover{background:var(--secondary)}
-table{width:100%;border-collapse:collapse;font-size:.85rem}
-th{background:var(--primary);color:#fff;padding:11px 14px;text-align:left;font-weight:600}
-td{padding:9px 14px;border-bottom:1px solid var(--border)}
-tr:hover td{background:#f8f9ff}
-.td-good{color:var(--accent2);font-weight:600}.td-mid{color:var(--accent3);font-weight:600}.td-low{color:var(--accent);font-weight:600}
-footer{background:var(--primary);color:rgba(255,255,255,.8);text-align:center;padding:40px 20px;margin-top:60px}
-footer a{color:rgba(255,255,255,.9);text-decoration:none}
-footer h3{color:#fff;margin-bottom:12px}
-.doi-badge{display:inline-block;background:rgba(255,255,255,.15);padding:8px 20px;border-radius:20px;margin:8px;font-size:.88rem}
-@media(max-width:768px){.chart-grid{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813">
+  <meta name="author" content="Juan Moisés de la Serna Tuya">
+  <meta name="keywords" content="dashboard, ibero-america, mental-health, open-data, public-health, specialists, zenodo">
+  <meta property="og:title" content="Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813">
+  <meta property="og:description" content="Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813">
+  <meta property="og:url" content="https://juanmoisesd.github.io/mental-health-specialists-iberoamerica/">
+  <title>Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813",
+    "description": "Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813",
+    "url": "https://github.com/juanmoisesd/mental-health-specialists-iberoamerica",
+    "author": {
+      "@type": "Person",
+      "name": "Juan Moisés de la Serna Tuya",
+      "identifier": "https://orcid.org/0000-0002-8401-8018"
+    },
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "datePublished": "2026-03-20",
+    "keywords": "dashboard, ibero-america, mental-health, open-data, public-health, specialists, zenodo"
+  }
+  </script>
 </head>
 <body>
-<header>
-<h1><i class="fas fa-brain"></i> Especialistas en Salud Mental y Neurologia en Iberoamerica</h1>
-<p>Base de datos interactiva: Psiquiatras, Psicologos, Neurologos por 100.000 habitantes en 22 paises iberoamericanos (2000-2026)</p>
-<div class="badges">
-<a href="https://zenodo.org/records/18937912" class="badge" target="_blank"><i class="fas fa-database"></i> DOI: 10.5281/zenodo.18937912</a>
-<a href="https://github.com/juanmoisesd/mental-health-specialists-iberoamerica" class="badge" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-<span class="badge"><i class="fas fa-globe"></i> 22 Paises</span>
-<span class="badge"><i class="fas fa-calendar"></i> 2000-2026</span>
-<span class="badge"><i class="fas fa-university"></i> UNIR</span>
-</div>
-</header>
-<nav>
-<a href="#abstract">Abstract</a><a href="#overview">Resumen</a><a href="#rankings">Rankings</a>
-<a href="#trends">Tendencias</a><a href="#comparisons">Comparativas</a>
-<a href="#countries">Por Pais</a><a href="#data-table">Datos</a>
-<a href="#methods">Metodos</a><a href="#citation">Citar</a>
-</nav>
-<div class="container">
-<section class="section" id="abstract">
-<h2 class="section-title">Abstract del Mini-Paper</h2>
-<p class="section-subtitle">Analisis epidemiologico de recursos humanos en salud mental y neurologia en Iberoamerica (2000-2026)</p>
-<div class="abstract-box">
-<h2>Introduccion y Justificacion</h2>
-<p>La escasez de especialistas en salud mental y neurologia representa uno de los principales desafios sanitarios en Iberoamerica. La OMS ha documentado esta brecha a traves de sus ediciones del ATLAS de Salud Mental (2001-2024). En America Latina y el Caribe (ALC), las tasas medias de psiquiatras oscilaron entre 1.3 (2017) y 3.4 por 100.000 hab. (2024), muy por debajo de los estandares europeos (9-15/100k).</p>
-<h2 style="margin-top:18px">Objetivos</h2>
-<p>Compilar, sistematizar y analizar los datos disponibles sobre la densidad de psiquiatras, psicologos, neurologos y neuropsiquiatras por 100.000 habitantes en los 22 paises de Iberoamerica para el periodo 2000-2026, identificando tendencias temporales, brechas regionales y factores asociados.</p>
-<h2 style="margin-top:18px">Metodos</h2>
-<p>Revision sistematica de fuentes secundarias: ATLAS de Salud Mental OMS (7 ediciones), GHO/WHO, PAHO/PLISA, OCDE Health Statistics, Eurostat, y publicaciones indexadas (PubMed/Scielo/BVSALUD). Datos normalizados por 100.000 hab. usando estimaciones del Banco Mundial. Interpolacion lineal para anos sin datos publicados.</p>
-<h2 style="margin-top:18px">Resultados Principales</h2>
-<p><strong>Psiquiatras:</strong> Uruguay (~17/100k) y Argentina (~14/100k) lideran en ALC; Chile (13/100k, 2024) sigue de cerca. Guatemala (0.4/100k) y Honduras (0.5/100k) presentan deficits criticos. Espana (9.27/100k) y Portugal (15/100k) estan en rangos europeos. La ratio ALC paso de ~1.3 (2017) a ~3.4/100k (2024).</p>
-<p><strong>Psicologos:</strong> Argentina lidera mundialmente con ~222 psicologos/100k, seguida de Costa Rica (142/100k) y Uruguay/Chile (>100/100k). Espana muestra cifras bajas en el sector publico (5.1-5.6/100k), por debajo de la media UE (~18-20/100k).</p>
-<p><strong>Neurologos:</strong> Argentina y Chile (~3-4/100k) y Espana/Portugal (~5-6/100k) presentan las tasas mas altas. Centroamerica mantiene cifras inferiores a 0.5/100k. Los neuropsiquiatras no existen como categoria separada en ningun sistema de datos iberoamericano.</p>
-<h2 style="margin-top:18px">Conclusiones</h2>
-<p>Persisten brechas profundas y sistematicas. Las desigualdades responden a factores estructurales (inversion en salud mental, formacion de posgrado, distribucion geografica) y coyunturales (crisis socioeconomicas, emigracion de profesionales). Se requieren politicas activas de formacion y retencion de talento especializado, especialmente en Centroamerica y la region andina.</p>
-</div>
-<div class="stats-grid">
-<div class="stat-card"><div class="stat-value">22</div><div class="stat-label">Paises iberoamericanos analizados</div></div>
-<div class="stat-card"><div class="stat-value">222</div><div class="stat-label">Psicologos/100k en Argentina (record mundial, 2025)</div></div>
-<div class="stat-card"><div class="stat-value">3.4</div><div class="stat-label">Media psiquiatras/100k en ALC (2024)</div></div>
-<div class="stat-card"><div class="stat-value">0.2</div><div class="stat-label">Minimo psiquiatras/100k (Guatemala, 2017)</div></div>
-</div>
-</section>
-<section class="section" id="rankings">
-<h2 class="section-title">Rankings por Especialidad</h2>
-<p class="section-subtitle">Comparacion de paises segun disponibilidad de especialistas (ultimos datos ~2024)</p>
-<div class="chart-grid">
-<div class="chart-card"><h3>Ranking: Psiquiatras / 100.000 hab.</h3><p>Datos mas recientes. Verde oscuro &gt;10, verde 3-10, naranja 1-3, rojo &lt;1.</p><div id="chart-rank-psy" style="height:420px"></div></div>
-<div class="chart-card"><h3>Ranking: Psicologos / 100.000 hab.</h3><p>Argentina lidera mundialmente. Costa Rica y Chile son el top de ALC.</p><div id="chart-rank-psy2" style="height:420px"></div></div>
-</div>
-<div class="chart-grid">
-<div class="chart-card"><h3>Ranking: Neurologos / 100.000 hab.</h3><p>Datos mas recientes disponibles. Espana y Portugal lideran la region.</p><div id="chart-rank-neu" style="height:420px"></div></div>
-<div class="chart-card"><h3>Comparativa multidimensional (Radar)</h3><p>Paises seleccionados normalizados. Muestra el perfil relativo de cada pais.</p><div id="chart-radar" style="height:420px"></div></div>
-</div>
-</section>
-<section class="section" id="trends">
-<h2 class="section-title">Tendencias Temporales (2000-2026)</h2>
-<p class="section-subtitle">Evolucion de la densidad de especialistas a lo largo del tiempo</p>
-<div class="chart-full"><h3>Evolucion de Psiquiatras / 100.000 hab. (2000-2026)</h3><p>Los datos reales corresponden a ediciones del ATLAS OMS. Las conexiones entre puntos son interpolaciones lineales.</p><div id="chart-trend-psy" style="height:500px"></div></div>
-<div class="chart-full"><h3>Evolucion de Psicologos / 100.000 hab. (2000-2026)</h3><p>Argentina destaca como caso excepcional a nivel mundial. Comparativa con principales paises de la region.</p><div id="chart-trend-psych" style="height:500px"></div></div>
-<div class="chart-grid">
-<div class="chart-card"><h3>Brecha Regional: ALC vs. Europa (Psiquiatras)</h3><p>La brecha se mantiene aunque ALC mejora levemente. Europa referencia con Espana+Portugal.</p><div id="chart-gap" style="height:380px"></div></div>
-<div class="chart-card"><h3>Centroamerica: Evolucion Psiquiatras</h3><p>Paises con los indices mas bajos. Estancamiento preocupante en la mayoria de paises centroamericanos.</p><div id="chart-centroam" style="height:380px"></div></div>
-</div>
-</section>
-<section class="section" id="comparisons">
-<h2 class="section-title">Analisis Comparativo</h2>
-<p class="section-subtitle">Relaciones entre especialidades, patrones regionales y clasificaciones</p>
-<div class="chart-grid">
-<div class="chart-card"><h3>Scatter: Psiquiatras vs. Psicologos por Pais</h3><p>Relacion entre disponibilidad de ambas especialidades. El tamano indica la poblacion total.</p><div id="chart-scatter" style="height:420px"></div></div>
-<div class="chart-card"><h3>Distribucion: Paises por Rango de Psiquiatras</h3><p>La mayoria de paises iberoamericanos se concentra en el rango critico (&lt;1/100k).</p><div id="chart-hist" style="height:420px"></div></div>
-</div>
-<div class="chart-full"><h3>Mapa Coropletico: Psiquiatras / 100.000 hab. en Iberoamerica (~2024)</h3><p>Verde oscuro = mayor disponibilidad. Rojo = deficit critico. Haz hover para ver valores exactos.</p><div id="chart-map" style="height:550px"></div></div>
-<div class="chart-grid">
-<div class="chart-card"><h3>Treemap: Clasificacion por Nivel de Acceso</h3><p>Cuatro categorias segun disponibilidad de psiquiatras. Tamano proporcional al valor.</p><div id="chart-treemap" style="height:420px"></div></div>
-<div class="chart-card"><h3>Cono Sur vs. Centroamerica: Brecha Historica</h3><p>La brecha entre Cono Sur y Centroamerica es de hasta 30x en psiquiatras por 100.000 hab.</p><div id="chart-cono" style="height:420px"></div></div>
-</div>
-                                                                                                                                                </section>
-<section class="section" id="countries">
-<h2 class="section-title">Datos por Pais</h2>
-<p class="section-subtitle">Resumen de cada pais con los ultimos datos disponibles</p>
-<div class="filter-bar">
-<label>Ordenar por:</label>
-<select id="sort-countries" onchange="renderCountryCards()">
-<option value="psy-desc">Psiquiatras (mayor a menor)</option>
-<option value="psy-asc">Psiquiatras (menor a mayor)</option>
-<option value="psych-desc">Psicologos (mayor a menor)</option>
-<option value="name-asc">Nombre (A-Z)</option>
-</select>
-<label>Region:</label>
-<select id="filter-region" onchange="renderCountryCards()">
-<option value="all">Todos</option><option value="south">Cono Sur</option>
-<option value="andean">Andinos</option><option value="central">Centroamerica</option>
-<option value="caribbean">Caribe</option><option value="europe">Europa</option>
-<option value="north">Mexico</option>
-</select>
-</div>
-<div id="country-cards" class="country-grid"></div>
-</section>
-<section class="section" id="data-table">
-<h2 class="section-title">Tabla de Datos Completa</h2>
-<p class="section-subtitle">Todos los datos por pais, ano y especialidad. Fuentes: ATLAS OMS, OCDE, GHO, datos nacionales.</p>
-<div class="filter-bar">
-<label>Pais:</label><select id="filter-country" onchange="renderTable()"><option value="all">Todos</option></select>
-<button onclick="downloadCSV()"><i class="fas fa-download"></i> Descargar CSV</button>
-</div>
-<div style="overflow-x:auto;background:#fff;border-radius:12px;box-shadow:var(--card-shadow)">
-<div id="data-table-container"></div>
-</div>
-</section>
-<section class="section" id="methods">
-<h2 class="section-title">Metodologia</h2>
-<p class="section-subtitle">Fuentes de datos, procedimiento y limitaciones</p>
-<div class="methods-grid">
-<div class="method-card"><h3><i class="fas fa-database" style="color:var(--primary)"></i> Fuentes de Datos</h3><ul>
-<li><strong>ATLAS OMS:</strong> Ediciones 2001, 2005, 2011, 2014, 2017, 2020, 2024</li>
-<li><strong>GHO/WHO:</strong> Global Health Observatory</li>
-<li><strong>PAHO/PLISA:</strong> OPS Americas</li>
-<li><strong>OCDE:</strong> Health Statistics 2024</li>
-<li><strong>Eurostat:</strong> European Health Statistics</li>
-<li><strong>Scielo/PubMed:</strong> Estudios nacionales indexados</li>
-<li><strong>Pepsic/BVSALUD:</strong> Biblioteca Virtual en Salud</li>
-</ul></div>
-<div class="method-card"><h3><i class="fas fa-cogs" style="color:var(--primary)"></i> Procedimiento</h3><ul>
-<li>Busqueda sistematica en bases de datos internacionales</li>
-<li>Normalizacion por 100.000 hab. (Banco Mundial)</li>
-<li>Interpolacion lineal entre anos con datos reales</li>
-<li>Validacion cruzada entre multiples fuentes</li>
-<li>Clasificacion de calidad de datos (real vs estimado)</li>
-<li>Compilacion en formato CSV abierto (Zenodo)</li>
-</ul></div>
-<div class="method-card"><h3><i class="fas fa-exclamation-triangle" style="color:var(--accent3)"></i> Limitaciones</h3><ul>
-<li>Los ATLAS OMS no publican series anuales continuas</li>
-<li>Los anos intermedios son estimaciones interpoladas</li>
-<li>Neuropsiquiatria no existe como categoria separada</li>
-<li>Disparidad metodologica entre paises</li>
-<li>Sectores publico/privado no siempre desglosados</li>
-<li>Posible subregistro en paises de bajos ingresos</li>
-</ul></div>
-<div class="method-card"><h3><i class="fas fa-chart-line" style="color:var(--accent2)"></i> Anos con Datos Reales</h3><ul>
-<li><strong>~2001:</strong> ATLAS OMS 1a edicion</li>
-<li><strong>~2005:</strong> ATLAS OMS 2a edicion</li>
-<li><strong>~2011:</strong> ATLAS OMS 3a edicion</li>
-<li><strong>~2014:</strong> ATLAS OMS 4a edicion</li>
-<li><strong>~2017:</strong> ATLAS OMS 5a edicion</li>
-<li><strong>~2020:</strong> ATLAS OMS 6a edicion</li>
-<li><strong>~2024:</strong> ATLAS OMS 7a + OCDE</li>
-</ul></div>
-</div>
-</section>
-<section class="section" id="citation">
-<h2 class="section-title">Como Citar Este Dataset</h2>
-<p class="section-subtitle">Si utilizas estos datos en tu investigacion, por favor cita de la siguiente manera:</p>
-<div class="citation-box">
-<h3>APA 7a Edicion</h3>
-<div class="citation-text">de la Serna, J. M. (2026). <em>Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica (2000-2026)</em> [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.18937912</div>
-</div>
-<div class="citation-box" style="background:#2e7d32;margin-top:14px">
-<h3>BibTeX</h3>
-<div class="citation-text">@dataset{delaserna2026salud,<br>&nbsp;&nbsp;author = {de la Serna, Juan Moises},<br>&nbsp;&nbsp;title = {Especialistas en Salud Mental y Neurologia por 100.000 Habitantes en Iberoamerica},<br>&nbsp;&nbsp;year = {2026},<br>&nbsp;&nbsp;publisher = {Zenodo},<br>&nbsp;&nbsp;doi = {10.5281/zenodo.18937912},<br>&nbsp;&nbsp;url = {https://zenodo.org/records/18937912}<br>}</div>
-</div>
-</section>
-</div>
-<footer>
-<h3>Especialistas en Salud Mental y Neurologia en Iberoamerica</h3>
-<p>Dataset abierto compilado por <strong>Juan Moises de la Serna</strong> | Universidad Internacional de La Rioja (UNIR)</p>
-<div class="doi-badge"><i class="fas fa-database"></i> DOI: <a href="https://zenodo.org/records/18937912">10.5281/zenodo.18937912</a></div>
-<div class="doi-badge"><i class="fab fa-github"></i> <a href="https://github.com/juanmoisesd/mental-health-specialists-iberoamerica">GitHub</a></div>
-<p style="margin-top:18px;font-size:.82rem;opacity:.7">Fuentes: ATLAS OMS/OPS (2001-2024) · OCDE · GHO · PAHO · Eurostat · Publicaciones nacionales</p>
-<p style="margin-top:6px;font-size:.78rem;opacity:.6">Licencia MIT · Datos CC-BY 4.0 · Publicado: 3 octubre 2026</p>
-                                                         </footer>
-<script>
-const DATA=[
-{pais:"Argentina",region:"south",flag:"AR",ano:2010,psy:10,psych:80,neu:null,fuente:"ATLAS OMS"},
-{pais:"Argentina",region:"south",flag:"AR",ano:2014,psy:12,psych:120,neu:null,fuente:"ATLAS OMS"},
-{pais:"Argentina",region:"south",flag:"AR",ano:2017,psy:13,psych:120,neu:2,fuente:"ATLAS OMS/OPS"},
-{pais:"Argentina",region:"south",flag:"AR",ano:2020,psy:14,psych:180,neu:2.5,fuente:"ATLAS OMS"},
-{pais:"Argentina",region:"south",flag:"AR",ano:2024,psy:14,psych:222,neu:3,fuente:"OCDE/Diario Uno"},
-{pais:"Bolivia",region:"andean",flag:"BO",ano:2014,psy:0.3,psych:null,neu:null,fuente:"ATLAS OMS"},
-{pais:"Bolivia",region:"andean",flag:"BO",ano:2017,psy:0.3,psych:5,neu:0.5,fuente:"ATLAS OMS"},
-{pais:"Bolivia",region:"andean",flag:"BO",ano:2020,psy:0.4,psych:6,neu:0.5,fuente:"Acceso Investigativo"},
-{pais:"Bolivia",region:"andean",flag:"BO",ano:2024,psy:0.4,psych:8,neu:0.5,fuente:"OMS estimado"},
-{pais:"Brasil",region:"south",flag:"BR",ano:2010,psy:2,psych:6,neu:null,fuente:"ATLAS OMS"},
-{pais:"Brasil",region:"south",flag:"BR",ano:2014,psy:2.5,psych:8,neu:1,fuente:"ATLAS OMS"},
-{pais:"Brasil",region:"south",flag:"BR",ano:2017,psy:3,psych:8,neu:1,fuente:"ATLAS OMS/OPS"},
-{pais:"Brasil",region:"south",flag:"BR",ano:2020,psy:4,psych:10,neu:1.5,fuente:"ATLAS OMS"},
-{pais:"Brasil",region:"south",flag:"BR",ano:2024,psy:6.69,psych:12,neu:1.5,fuente:"OCDE"},
-{pais:"Chile",region:"south",flag:"CL",ano:2010,psy:5,psych:40,neu:null,fuente:"ATLAS OMS"},
-{pais:"Chile",region:"south",flag:"CL",ano:2014,psy:9,psych:70,neu:null,fuente:"ATLAS OMS"},
-{pais:"Chile",region:"south",flag:"CL",ano:2017,psy:10,psych:70,neu:2,fuente:"ATLAS OMS"},
-{pais:"Chile",region:"south",flag:"CL",ano:2020,psy:11,psych:90,neu:2.5,fuente:"ATLAS OMS"},
-{pais:"Chile",region:"south",flag:"CL",ano:2024,psy:13,psych:100,neu:3,fuente:"OCDE"},
-{pais:"Colombia",region:"andean",flag:"CO",ano:2010,psy:1,psych:5,neu:null,fuente:"ATLAS OMS"},
-{pais:"Colombia",region:"andean",flag:"CO",ano:2014,psy:1.5,psych:8,neu:null,fuente:"ATLAS OMS"},
-{pais:"Colombia",region:"andean",flag:"CO",ano:2017,psy:1.5,psych:8,neu:1,fuente:"ATLAS OMS"},
-{pais:"Colombia",region:"andean",flag:"CO",ano:2020,psy:2,psych:10,neu:1,fuente:"ATLAS OMS"},
-{pais:"Colombia",region:"andean",flag:"CO",ano:2024,psy:2,psych:12,neu:1,fuente:"OCDE"},
-{pais:"Costa Rica",region:"central",flag:"CR",ano:2014,psy:1.5,psych:80,neu:null,fuente:"ATLAS OMS"},
-{pais:"Costa Rica",region:"central",flag:"CR",ano:2017,psy:1.7,psych:80,neu:1,fuente:"ATLAS OMS"},
-{pais:"Costa Rica",region:"central",flag:"CR",ano:2020,psy:2,psych:100,neu:1,fuente:"ATLAS OMS"},
-{pais:"Costa Rica",region:"central",flag:"CR",ano:2024,psy:2,psych:142,neu:1,fuente:"Diario Uno/OPS"},
-{pais:"Cuba",region:"caribbean",flag:"CU",ano:2010,psy:3,psych:15,neu:null,fuente:"ATLAS OMS"},
-{pais:"Cuba",region:"caribbean",flag:"CU",ano:2014,psy:4.5,psych:20,neu:1.5,fuente:"ATLAS OMS"},
-{pais:"Cuba",region:"caribbean",flag:"CU",ano:2017,psy:5,psych:20,neu:1.5,fuente:"ATLAS OMS/SMU"},
-{pais:"Cuba",region:"caribbean",flag:"CU",ano:2020,psy:5,psych:25,neu:1.5,fuente:"ATLAS OMS"},
-{pais:"Cuba",region:"caribbean",flag:"CU",ano:2024,psy:5,psych:31,neu:2,fuente:"ATLAS/SMU"},
-{pais:"Ecuador",region:"andean",flag:"EC",ano:2017,psy:0.8,psych:5,neu:0.5,fuente:"OMS"},
-{pais:"Ecuador",region:"andean",flag:"EC",ano:2020,psy:0.9,psych:6,neu:0.5,fuente:"OMS"},
-{pais:"Ecuador",region:"andean",flag:"EC",ano:2024,psy:1,psych:8,neu:0.5,fuente:"OMS"},
-{pais:"El Salvador",region:"central",flag:"SV",ano:2017,psy:0.5,psych:2,neu:0.5,fuente:"ATLAS/SMU"},
-{pais:"El Salvador",region:"central",flag:"SV",ano:2020,psy:0.5,psych:3,neu:0.5,fuente:"ATLAS/SMU"},
-{pais:"El Salvador",region:"central",flag:"SV",ano:2024,psy:0.5,psych:3,neu:0.5,fuente:"ATLAS/SMU"},
-{pais:"Espana",region:"europe",flag:"ES",ano:2009,psy:6.5,psych:4,neu:null,fuente:"SEPSM/Infocop"},
-{pais:"Espana",region:"europe",flag:"ES",ano:2014,psy:8,psych:5,neu:4,fuente:"SEPSM/Eurostat"},
-{pais:"Espana",region:"europe",flag:"ES",ano:2017,psy:9,psych:5,neu:4,fuente:"SEPSM/ATLAS"},
-{pais:"Espana",region:"europe",flag:"ES",ano:2020,psy:9.5,psych:5.1,neu:5,fuente:"SEPSM/Eurostat"},
-{pais:"Espana",region:"europe",flag:"ES",ano:2024,psy:9.27,psych:5.6,neu:5.5,fuente:"SEPSM/COP/Eurostat"},
-{pais:"Guatemala",region:"central",flag:"GT",ano:2017,psy:0.2,psych:30,neu:0.3,fuente:"ATLAS/Facebook"},
-{pais:"Guatemala",region:"central",flag:"GT",ano:2020,psy:0.3,psych:40,neu:0.3,fuente:"ATLAS"},
-{pais:"Guatemala",region:"central",flag:"GT",ano:2024,psy:0.4,psych:46,neu:0.3,fuente:"Diario Uno"},
-{pais:"Honduras",region:"central",flag:"HN",ano:2014,psy:0.5,psych:1,neu:null,fuente:"ATLAS/SMU"},
-{pais:"Honduras",region:"central",flag:"HN",ano:2017,psy:0.5,psych:2,neu:0.3,fuente:"ATLAS/SMU"},
-{pais:"Honduras",region:"central",flag:"HN",ano:2020,psy:0.5,psych:2,neu:0.3,fuente:"ATLAS/SMU"},
-{pais:"Honduras",region:"central",flag:"HN",ano:2024,psy:0.5,psych:2,neu:0.3,fuente:"ATLAS/SMU"},
-{pais:"Mexico",region:"north",flag:"MX",ano:2010,psy:3.47,psych:1,neu:null,fuente:"Scielo"},
-{pais:"Mexico",region:"north",flag:"MX",ano:2014,psy:3,psych:2,neu:1,fuente:"ATLAS OMS"},
-{pais:"Mexico",region:"north",flag:"MX",ano:2017,psy:2,psych:2,neu:1.2,fuente:"ATLAS OMS"},
-{pais:"Mexico",region:"north",flag:"MX",ano:2020,psy:1.5,psych:2,neu:1.2,fuente:"ATLAS OMS"},
-{pais:"Mexico",region:"north",flag:"MX",ano:2024,psy:1.2,psych:2,neu:1.2,fuente:"OCDE/ATLAS"},
-{pais:"Nicaragua",region:"central",flag:"NI",ano:2014,psy:0.5,psych:1,neu:null,fuente:"ATLAS/SMU"},
-{pais:"Nicaragua",region:"central",flag:"NI",ano:2017,psy:0.5,psych:1,neu:0.3,fuente:"ATLAS/SMU"},
-{pais:"Nicaragua",region:"central",flag:"NI",ano:2020,psy:0.5,psych:1,neu:0.3,fuente:"ATLAS/SMU"},
-{pais:"Nicaragua",region:"central",flag:"NI",ano:2024,psy:0.5,psych:2,neu:0.3,fuente:"ATLAS/SMU"},
-{pais:"Panama",region:"central",flag:"PA",ano:2017,psy:1,psych:5,neu:0.5,fuente:"SMU"},
-{pais:"Panama",region:"central",flag:"PA",ano:2020,psy:1,psych:6,neu:0.5,fuente:"SMU"},
-{pais:"Panama",region:"central",flag:"PA",ano:2024,psy:1,psych:7,neu:0.8,fuente:"SMU"},
-{pais:"Paraguay",region:"south",flag:"PY",ano:2005,psy:0.5,psych:3,neu:null,fuente:"Pepsic/BVSALUD"},
-{pais:"Paraguay",region:"south",flag:"PY",ano:2014,psy:0.6,psych:5,neu:null,fuente:"Pepsic/BVSALUD"},
-{pais:"Paraguay",region:"south",flag:"PY",ano:2017,psy:0.7,psych:5,neu:0.5,fuente:"ATLAS/Pepsic"},
-{pais:"Paraguay",region:"south",flag:"PY",ano:2020,psy:0.7,psych:6,neu:0.5,fuente:"ATLAS"},
-{pais:"Paraguay",region:"south",flag:"PY",ano:2024,psy:0.8,psych:7,neu:0.5,fuente:"ATLAS"},
-{pais:"Peru",region:"andean",flag:"PE",ano:2014,psy:1,psych:8,neu:null,fuente:"ATLAS OMS"},
-{pais:"Peru",region:"andean",flag:"PE",ano:2017,psy:1.5,psych:8,neu:1,fuente:"ATLAS/SMU"},
-{pais:"Peru",region:"andean",flag:"PE",ano:2020,psy:1.5,psych:10,neu:1,fuente:"ATLAS OMS"},
-{pais:"Peru",region:"andean",flag:"PE",ano:2024,psy:1.5,psych:12,neu:1,fuente:"ATLAS/SMU"},
-{pais:"Portugal",region:"europe",flag:"PT",ano:2009,psy:4.7,psych:null,neu:null,fuente:"Eurostat"},
-{pais:"Portugal",region:"europe",flag:"PT",ano:2014,psy:8,psych:8,neu:3.5,fuente:"Eurostat/OCDE"},
-{pais:"Portugal",region:"europe",flag:"PT",ano:2017,psy:10,psych:10,neu:3.5,fuente:"Eurostat/OCDE"},
-{pais:"Portugal",region:"europe",flag:"PT",ano:2020,psy:12,psych:10,neu:4,fuente:"Eurostat/OCDE"},
-{pais:"Portugal",region:"europe",flag:"PT",ano:2024,psy:15,psych:12,neu:4,fuente:"Eurostat/OCDE"},
-{pais:"Rep Dominicana",region:"caribbean",flag:"DO",ano:2017,psy:0.8,psych:5,neu:0.5,fuente:"Regional"},
-{pais:"Rep Dominicana",region:"caribbean",flag:"DO",ano:2020,psy:0.9,psych:6,neu:0.5,fuente:"Regional"},
-{pais:"Rep Dominicana",region:"caribbean",flag:"DO",ano:2024,psy:1,psych:7,neu:0.5,fuente:"Regional"},
-{pais:"Uruguay",region:"south",flag:"UY",ano:2010,psy:10,psych:50,neu:null,fuente:"ATLAS OMS"},
-{pais:"Uruguay",region:"south",flag:"UY",ano:2014,psy:12,psych:80,neu:null,fuente:"ATLAS OMS"},
-{pais:"Uruguay",region:"south",flag:"UY",ano:2017,psy:14,psych:80,neu:2,fuente:"Facebook/OPS"},
-{pais:"Uruguay",region:"south",flag:"UY",ano:2020,psy:16,psych:90,neu:2.5,fuente:"OPS"},
-{pais:"Uruguay",region:"south",flag:"UY",ano:2024,psy:17,psych:100,neu:2.5,fuente:"OPS Regional"},
-{pais:"Venezuela",region:"andean",flag:"VE",ano:2010,psy:2,psych:5,neu:null,fuente:"ATLAS OMS"},
-{pais:"Venezuela",region:"andean",flag:"VE",ano:2014,psy:2,psych:8,neu:1,fuente:"ATLAS OMS"},
-{pais:"Venezuela",region:"andean",flag:"VE",ano:2017,psy:1.8,psych:8,neu:1,fuente:"ATLAS/crisis"},
-{pais:"Venezuela",region:"andean",flag:"VE",ano:2020,psy:1.5,psych:6,neu:1,fuente:"ATLAS/crisis"},
-{pais:"Venezuela",region:"andean",flag:"VE",ano:2024,psy:1.5,psych:5,neu:0.5,fuente:"ATLAS/crisis"}
-];
-
-function getLatest(p,f){const r=DATA.filter(d=>d.pais===p&&d[f]!=null).sort((a,b)=>b.ano-a.ano);return r.length>0?r[0][f]:null}
-function getAll(){return[...new Set(DATA.map(d=>d.pais))].sort()}
-function cv(v){if(!v)return'#e0e0e0';if(v>=10)return'#1b5e20';if(v>=3)return'#2e7d32';if(v>=1)return'#f57f17';return'#b71c1c'}
-function classV(v){if(!v)return'';if(v>=10)return'td-good';if(v>=3)return'td-mid';return'td-low'}
-
-function renderRankPsy(){
-const c=getAll(),vals=c.map(p=>({p,v:getLatest(p,'psy')})).filter(x=>x.v!=null).sort((a,b)=>a.v-b.v);
-Plotly.newPlot('chart-rank-psy',[{type:'bar',orientation:'h',x:vals.map(x=>x.v),y:vals.map(x=>x.p),text:vals.map(x=>x.v),textposition:'outside',marker:{color:vals.map(x=>cv(x.v))}}],{margin:{l:130,r:60,t:10,b:40},xaxis:{title:'Psiquiatras/100k'},paper_bgcolor:'transparent',plot_bgcolor:'transparent',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderRankPsy2(){
-const c=getAll(),vals=c.map(p=>({p,v:getLatest(p,'psych')})).filter(x=>x.v!=null).sort((a,b)=>a.v-b.v);
-Plotly.newPlot('chart-rank-psy2',[{type:'bar',orientation:'h',x:vals.map(x=>x.v),y:vals.map(x=>x.p),text:vals.map(x=>x.v),textposition:'outside',marker:{color:vals.map(x=>x.v>=100?'#1b5e20':x.v>=30?'#2e7d32':x.v>=10?'#f57f17':'#b71c1c')}}],{margin:{l:130,r:80,t:10,b:40},xaxis:{title:'Psicologos/100k'},paper_bgcolor:'transparent',plot_bgcolor:'transparent',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderRankNeu(){
-const c=getAll(),vals=c.map(p=>({p,v:getLatest(p,'neu')})).filter(x=>x.v!=null).sort((a,b)=>a.v-b.v);
-Plotly.newPlot('chart-rank-neu',[{type:'bar',orientation:'h',x:vals.map(x=>x.v),y:vals.map(x=>x.p),text:vals.map(x=>x.v),textposition:'outside',marker:{color:vals.map(x=>x.v>=4?'#1b5e20':x.v>=2?'#2e7d32':x.v>=1?'#f57f17':'#b71c1c')}}],{margin:{l:130,r:60,t:10,b:40},xaxis:{title:'Neurologos/100k'},paper_bgcolor:'transparent',plot_bgcolor:'transparent',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderRadar(){
-const sel=['Argentina','Chile','Espana','Portugal','Uruguay','Brasil','Mexico'],cats=['Psiquiatras','Psicologos(/10)','Neurologos'],maxV=[20,25,6];
-const traces=sel.map(c=>({type:'scatterpolar',fill:'toself',name:c,r:[(getLatest(c,'psy')||0)/maxV[0],(getLatest(c,'psych')||0)/10/maxV[1],(getLatest(c,'neu')||0)/maxV[2],(getLatest(c,'psy')||0)/maxV[0]],theta:[...cats,cats[0]]}));
-Plotly.newPlot('chart-radar',traces,{polar:{radialaxis:{visible:true,range:[0,1]}},legend:{orientation:'h'},margin:{t:20,b:30},paper_bgcolor:'transparent',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderTrendPsy(){
-const sel=['Argentina','Chile','Espana','Portugal','Uruguay','Brasil','Mexico','Colombia','Cuba','Peru'],cols=['#1565c0','#c62828','#ff6f00','#2e7d32','#6a1b9a','#00838f','#4e342e','#37474f','#ad1457','#558b2f'];
-const tr=sel.map((c,i)=>{const r=DATA.filter(d=>d.pais===c&&d.psy!=null).sort((a,b)=>a.ano-b.ano);return{type:'scatter',mode:'lines+markers',name:c,x:r.map(d=>d.ano),y:r.map(d=>d.psy),line:{color:cols[i],width:2.5},marker:{size:7}}});
-Plotly.newPlot('chart-trend-psy',tr,{xaxis:{title:'Ano'},yaxis:{title:'Psiquiatras/100k'},legend:{orientation:'h',y:-0.2},margin:{t:10,b:80},paper_bgcolor:'transparent',plot_bgcolor:'rgba(248,249,255,.5)',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderTrendPsych(){
-const sel=['Argentina','Costa Rica','Chile','Uruguay','Cuba','Guatemala','Brasil','Espana','Portugal'],cols=['#1565c0','#c62828','#ff6f00','#2e7d32','#6a1b9a','#00838f','#4e342e','#ad1457','#558b2f'];
-const tr=sel.map((c,i)=>{const r=DATA.filter(d=>d.pais===c&&d.psych!=null).sort((a,b)=>a.ano-b.ano);return{type:'scatter',mode:'lines+markers',name:c,x:r.map(d=>d.ano),y:r.map(d=>d.psych),line:{color:cols[i],width:2.5},marker:{size:7}}});
-Plotly.newPlot('chart-trend-psych',tr,{xaxis:{title:'Ano'},yaxis:{title:'Psicologos/100k'},legend:{orientation:'h',y:-0.2},margin:{t:10,b:80},paper_bgcolor:'transparent',plot_bgcolor:'rgba(248,249,255,.5)',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderGap(){
-Plotly.newPlot('chart-gap',[
-{x:[2001,2005,2010,2014,2017,2020,2024],y:[0.8,1,1.3,2,1.3,2.5,3.4],name:'ALC promedio',type:'scatter',mode:'lines+markers',fill:'tozeroy',fillcolor:'rgba(183,28,28,.1)',line:{color:'#b71c1c',width:3}},
-{x:[2001,2005,2010,2014,2017,2020,2024],y:[7,8,10,11,12,13,13],name:'Europa (ES+PT)',type:'scatter',mode:'lines+markers',fill:'tozeroy',fillcolor:'rgba(27,94,32,.1)',line:{color:'#1b5e20',width:3}}
-],{xaxis:{title:'Ano'},yaxis:{title:'Psiquiatras/100k'},legend:{orientation:'h'},margin:{t:10,b:40},paper_bgcolor:'transparent',plot_bgcolor:'rgba(248,249,255,.5)',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderCentroam(){
-const cn=['Guatemala','Honduras','El Salvador','Nicaragua','Panama','Costa Rica'],cols=['#e53935','#fb8c00','#fdd835','#43a047','#00acc1','#1e88e5'];
-const tr=cn.map((c,i)=>{const r=DATA.filter(d=>d.pais===c&&d.psy!=null).sort((a,b)=>a.ano-b.ano);return{type:'scatter',mode:'lines+markers',name:c,x:r.map(d=>d.ano),y:r.map(d=>d.psy),line:{color:cols[i],width:2.5},marker:{size:7}}});
-Plotly.newPlot('chart-centroam',tr,{xaxis:{title:'Ano'},yaxis:{title:'Psiquiatras/100k'},legend:{orientation:'h'},margin:{t:10,b:60},paper_bgcolor:'transparent',plot_bgcolor:'rgba(248,249,255,.5)',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderScatter(){
-const c=getAll(),vals=c.map(p=>({p,psy:getLatest(p,'psy'),psych:getLatest(p,'psych')})).filter(x=>x.psy&&x.psych);
-Plotly.newPlot('chart-scatter',[{type:'scatter',mode:'markers+text',x:vals.map(x=>x.psy),y:vals.map(x=>x.psych),text:vals.map(x=>x.p),textposition:'top center',marker:{size:12,color:'#1565c0',opacity:.7},hovertemplate:'<b>%{text}</b><br>Psiq: %{x}<br>Psic: %{y}<extra></extra>'}],{xaxis:{title:'Psiquiatras/100k'},yaxis:{title:'Psicologos/100k'},margin:{t:10,b:60},paper_bgcolor:'transparent',plot_bgcolor:'rgba(248,249,255,.5)',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderHist(){
-const vals=getAll().map(p=>getLatest(p,'psy')).filter(x=>x!=null);
-const bins=['<0.5','0.5-1','1-2','2-5','5-10','>10'],counts=[vals.filter(v=>v<.5).length,vals.filter(v=>v>=.5&&v<1).length,vals.filter(v=>v>=1&&v<2).length,vals.filter(v=>v>=2&&v<5).length,vals.filter(v=>v>=5&&v<10).length,vals.filter(v=>v>=10).length];
-Plotly.newPlot('chart-hist',[{type:'bar',x:bins,y:counts,text:counts,textposition:'outside',marker:{color:['#b71c1c','#e53935','#ef5350','#ff6f00','#2e7d32','#1b5e20']}}],{xaxis:{title:'Rango psiquiatras/100k'},yaxis:{title:'N paises'},margin:{t:10,b:60},paper_bgcolor:'transparent',plot_bgcolor:'rgba(248,249,255,.5)',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderMap(){
-const isoM={Argentina:'ARG',Bolivia:'BOL',Brasil:'BRA',Chile:'CHL',Colombia:'COL','Costa Rica':'CRI',Cuba:'CUB',Ecuador:'ECU','El Salvador':'SLV',Espana:'ESP',Guatemala:'GTM',Honduras:'HND',Mexico:'MEX',Nicaragua:'NIC',Panama:'PAN',Paraguay:'PRY',Peru:'PER',Portugal:'PRT','Rep Dominicana':'DOM',Uruguay:'URY',Venezuela:'VEN'};
-const vals=getAll().filter(p=>isoM[p]).map(p=>({p,iso:isoM[p],v:getLatest(p,'psy')||0}));
-Plotly.newPlot('chart-map',[{type:'choropleth',locationmode:'ISO-3',locations:vals.map(x=>x.iso),z:vals.map(x=>x.v),text:vals.map(x=>x.p),colorscale:[[0,'#b71c1c'],[.1,'#e53935'],[.3,'#ff6f00'],[.5,'#fdd835'],[.7,'#66bb6a'],[1,'#1b5e20']],colorbar:{title:'Psiq/100k',thickness:15},hovertemplate:'<b>%{text}</b><br>%{z} psiq/100k<extra></extra>'}],{geo:{scope:'world',showcoastlines:true,showframe:false,center:{lon:-60,lat:5},projection:{type:'natural earth',scale:2.5}},margin:{t:0,b:0,l:0,r:0},paper_bgcolor:'transparent',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderTreemap(){
-const labels=['Iberoamerica','Alto >10/100k','Argentina','Uruguay','Chile','Medio 3-10','Brasil','Cuba','Espana','Portugal','Bajo 1-3','Colombia','Mexico','Costa Rica','Peru','Ecuador','Venezuela','Critico <1','Guatemala','Honduras','El Salvador','Nicaragua','Bolivia','Paraguay'],
-parents=['','Iberoamerica','Alto >10/100k','Alto >10/100k','Alto >10/100k','Iberoamerica','Medio 3-10','Medio 3-10','Medio 3-10','Medio 3-10','Iberoamerica','Bajo 1-3','Bajo 1-3','Bajo 1-3','Bajo 1-3','Bajo 1-3','Bajo 1-3','Iberoamerica','Critico <1','Critico <1','Critico <1','Critico <1','Critico <1','Critico <1'],
-values=[0,3,14,17,13,4,6.69,5,9.27,15,7,2,1.2,2,1.5,1,1.5,6,0.4,0.5,0.5,0.5,0.4,0.8];
-Plotly.newPlot('chart-treemap',[{type:'treemap',ids:labels,labels,parents,values,hovertemplate:'<b>%{label}</b><br>Psiquiatras: %{value}/100k<extra></extra>'}],{margin:{t:10,b:10},paper_bgcolor:'transparent',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderCono(){
-const cono=['Argentina','Uruguay','Chile','Brasil'],cam=['Guatemala','Honduras','El Salvador','Nicaragua'],years=[2010,2014,2017,2020,2024];
-const avg=(g,y)=>{const v=g.map(c=>DATA.find(d=>d.pais===c&&d.ano===y)?.psy).filter(x=>x!=null);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null};
-Plotly.newPlot('chart-cono',[
-{x:years,y:years.map(y=>avg(cono,y)),name:'Cono Sur',type:'scatter',mode:'lines+markers',fill:'tozeroy',fillcolor:'rgba(27,94,32,.15)',line:{color:'#1b5e20',width:3}},
-{x:years,y:years.map(y=>avg(cam,y)),name:'Centroamerica',type:'scatter',mode:'lines+markers',fill:'tozeroy',fillcolor:'rgba(183,28,28,.15)',line:{color:'#b71c1c',width:3}}
-],{xaxis:{title:'Ano'},yaxis:{title:'Psiquiatras/100k'},legend:{orientation:'h'},margin:{t:10,b:60},paper_bgcolor:'transparent',plot_bgcolor:'rgba(248,249,255,.5)',font:{family:'Segoe UI'}},{responsive:true})}
-
-function renderCountryCards(){
-const sort=document.getElementById('sort-countries').value,reg=document.getElementById('filter-region').value;
-let cards=getAll().map(p=>{const r=DATA.filter(d=>d.pais===p);return{p,region:r[0]?.region,flag:r[0]?.flag||'??',psy:getLatest(p,'psy'),psych:getLatest(p,'psych'),neu:getLatest(p,'neu')}});
-if(reg!=='all')cards=cards.filter(x=>x.region===reg);
-if(sort==='psy-desc')cards.sort((a,b)=>(b.psy||0)-(a.psy||0));
-else if(sort==='psy-asc')cards.sort((a,b)=>(a.psy||0)-(b.psy||0));
-else if(sort==='psych-desc')cards.sort((a,b)=>(b.psych||0)-(a.psych||0));
-else cards.sort((a,b)=>a.p.localeCompare(b.p));
-document.getElementById('country-cards').innerHTML=cards.map(x=>`<div class="country-card"><div class="country-flag">${x.flag}</div><div class="country-name">${x.p}</div><div class="country-stat"><span>Psiquiatras</span><span class="country-stat-val">${x.psy??'N/D'}/100k</span></div><div class="country-stat"><span>Psicologos</span><span class="country-stat-val">${x.psych??'N/D'}/100k</span></div><div class="country-stat"><span>Neurologos</span><span class="country-stat-val">${x.neu??'N/D'}/100k</span></div></div>`).join('')}
-
-function renderTable(){
-const fc=document.getElementById('filter-country').value,rows=DATA.filter(d=>fc==='all'||d.pais===fc);
-document.getElementById('data-table-container').innerHTML=`<table><thead><tr><th>Pais</th><th>Ano</th><th>Psiquiatras/100k</th><th>Psicologos/100k</th><th>Neurologos/100k</th><th>Fuente</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.pais}</td><td>${r.ano}</td><td class="${classV(r.psy)}">${r.psy??'—'}</td><td class="${classV(r.psych)}">${r.psych??'—'}</td><td class="${classV(r.neu)}">${r.neu??'—'}</td><td style="color:#757575;font-size:.78rem">${r.fuente}</td></tr>`).join('')}</tbody></table>`}
-
-function downloadCSV(){const h='Pais,Ano,Psiquiatras_100k,Psicologos_100k,Neurologos_100k,Fuente\n',r=DATA.map(d=>`${d.pais},${d.ano},${d.psy??''},${d.psych??''},${d.neu??''},${d.fuente}`).join('\n');const b=new Blob([h+r],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='especialistas_salud_mental_iberoamerica.csv';a.click()}
-
-document.addEventListener('DOMContentLoaded',()=>{
-renderRankPsy();renderRankPsy2();renderRankNeu();renderRadar();
-renderTrendPsy();renderTrendPsych();renderGap();renderCentroam();
-renderScatter();renderHist();renderMap();renderTreemap();renderCono();
-renderCountryCards();
-getAll().forEach(p=>{const o=document.createElement('option');o.value=p;o.text=p;document.getElementById('filter-country').add(o)});
-renderTable();
-});
-document.querySelectorAll('nav a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active');const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
-</script>
+  <header>
+    <h1>Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813</h1>
+    <p class="subtitle">Open Dataset by <a href="https://orcid.org/0000-0002-8401-8018">Juan Moisés de la Serna Tuya</a></p>
+  </header>
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <p>Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813</p>
+      <ul>
+        <li><strong>Author:</strong> <a href="https://orcid.org/0000-0002-8401-8018">Juan Moisés de la Serna Tuya</a></li>
+        <li><strong>Institution:</strong> Universidad Internacional de La Rioja (UNIR)</li>
+        <li><strong>License:</strong> <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</a></li>
+        <li><strong>Repository:</strong> <a href="https://github.com/juanmoisesd/mental-health-specialists-iberoamerica">GitHub</a></li>
+      </ul>
+    </section>
+    <section id="cite">
+      <h2>How to Cite</h2>
+      <code>de la Serna Tuya, J.M. (2026). Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813. GitHub. https://github.com/juanmoisesd/mental-health-specialists-iberoamerica</code>
+    </section>
+    <section id="data">
+      <h2>Access Data</h2>
+      <a class="btn" href="https://github.com/juanmoisesd/mental-health-specialists-iberoamerica">View on GitHub</a>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2026 Juan Moisés de la Serna Tuya | <a href="https://orcid.org/0000-0002-8401-8018">ORCID</a> | <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a></p>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
