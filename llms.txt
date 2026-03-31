@@ -1,0 +1,31 @@
+# Mental Health Specialists in Ibero-America
+
+> Interactive dashboard on mental health and neurology specialists per 100,000 inhabitants in Ibero-America (2000–2026).
+
+## Author
+Juan Moisés de la Serna Tuya (UNIR)
+ORCID: 0000-0002-8401-8018
+Email: jmsernatuya@gmail.com
+
+## Description
+Open dataset tracking the density of mental health specialists (psychiatrists, psychologists, neurologists, social workers, nurses) per 100,000 inhabitants across 20+ Ibero-American countries from 2000 to 2026. Enables cross-country comparisons of mental healthcare access and identifies regions with critical shortages.
+
+## Coverage
+- Countries: Spain, Portugal, Mexico, Argentina, Brazil, Colombia, Chile, Peru, Venezuela, Ecuador, Bolivia, Paraguay, Uruguay, Cuba, Dominican Republic, Costa Rica, Panama, Honduras, Guatemala, El Salvador, Nicaragua
+- Years: 2000–2026
+- Variables: psychiatrists, psychologists, neurologists, social workers, nurses, total specialists per 100k
+
+## Dataset DOI
+https://doi.org/10.5281/zenodo.18984813
+
+## Dashboard URL
+https://juanmoisesd.github.io/mental-health-specialists-iberoamerica/
+
+## License
+Data: CC BY 4.0 | Code: MIT
+
+## Citation
+Serna Tuya, J.M. (2025). Mental Health Specialists in Ibero-America: Open Dataset (2000–2026). Zenodo. https://doi.org/10.5281/zenodo.18984813
+
+## Keywords
+mental health, psychiatry, psychology, neurology, ibero-america, latin america, healthcare access, public health, specialists, open data
