@@ -1,0 +1,42 @@
+NOTICE — Data Source Attribution
+=================================
+
+Project: Mental Health and Neurology Specialists in Ibero-America Dashboard
+Author:  Juan Moisés de la Serna Tuya (UNIR)
+ORCID:   https://orcid.org/0000-0002-8401-8018
+DOI:     https://doi.org/10.5281/zenodo.18984813
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Data Sources
+------------
+This dataset was compiled and curated from the following public sources:
+
+1. World Health Organization (WHO) — Mental Health Atlas
+   URL: https://www.who.int/publications/i/item/9789240049703
+   License: CC BY-NC-SA 3.0 IGO
+
+2. Pan American Health Organization (PAHO) — Mental Health Data
+   URL: https://www.paho.org/en/topics/mental-health
+   License: Open access for non-commercial use
+
+3. OECD Health Statistics — Health Workforce
+   URL: https://www.oecd.org/health/health-statistics.htm
+   License: Subject to OECD terms of use
+
+4. National health ministries and official statistical agencies
+   of Argentina, Bolivia, Brazil, Chile, Colombia, Ecuador,
+   Mexico, Paraguay, Peru, Spain, Portugal, and Uruguay.
+
+Attribution Requirement
+-----------------------
+If you use this dataset in your research or publications, please cite:
+
+  Serna Tuya, J. M. (2025). Interactive dashboard: Mental health and
+  neurology specialists per 100k in Ibero-America (2000-2026). Zenodo.
+  https://doi.org/10.5281/zenodo.18984813
+
+Third-Party Rights
+------------------
+Raw source data from WHO, PAHO, and OECD remains subject to their
+respective licenses. This NOTICE does not grant additional rights
+beyond what those licenses allow.
