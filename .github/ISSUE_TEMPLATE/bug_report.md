@@ -1,22 +1,20 @@
 ---
-name: 🐛 Bug Report
-about: Report an error in the data or code
+name: Bug report / Data issue
+about: Report incorrect data, broken dashboard, or technical errors
 title: '[BUG] '
 labels: bug
 assignees: juanmoisesd
 ---
 
-## Description
-What is the bug or error?
-
-## File / Variable affected
-Which file or variable contains the error?
-
-## Expected value
-What should the correct value be? (include source if possible)
+## Describe the bug
 
 ## Steps to reproduce
-How can we reproduce the issue?
+1. ...
 
-## Additional context
-Any other relevant information.
+## Expected behavior
+
+## Screenshots
+
+## Environment
+- OS:
+- Browser:
