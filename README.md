@@ -1,93 +1,21 @@
-# Mental Health Specialists in Ibero-America Dashboard
+# Mental Health Specialists in Iberoamerica
 
-[![Collection DOI](https://img.shields.io/badge/Collection_DOI-10.5281%2Fzenodo.19145316-blue?logo=zenodo)](https://doi.org/10.5281/zenodo.19145316) [![Author](https://img.shields.io/badge/ORCID-0000--0002--8401--8018-green?logo=orcid)](https://orcid.org/0000-0002-8401-8018)
-
-> Part of the **[Open Research Collection by Juan Moisés de la Serna Tuya](https://doi.org/10.5281/zenodo.19145316)** — 1,273+ datasets | DOI: 10.5281/zenodo.19145316
-
-[![ORCID](https://img.shields.io/badge/ORCID-0000--0002--8401--8018-green)](https://orcid.org/0000-0002-8401-8018)
-[![License: CC0](https://img.shields.io/badge/License-CC0%201.0-lightgrey)](http://creativecommons.org/publicdomain/zero/1.0/)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.18984813-blue?logo=zenodo)](https://doi.org/10.5281/zenodo.18984813) [![ORCID](https://img.shields.io/badge/ORCID-0000--0002--8401--8018-green?logo=orcid)](https://orcid.org/0000-0002-8401-8018)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/juanmoisesd/mental-health-specialists-iberoamerica/main?labpath=notebooks%2Fexploratory_analysis.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/juanmoisesd/mental-health-specialists-iberoamerica/blob/main/notebooks/exploratory_analysis.ipynb)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
 [![Pages](https://img.shields.io/badge/Live-Dashboard-brightgreen)](https://juanmoisesd.github.io/mental-health-specialists-iberoamerica/)
-[![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.18984813-blue)](https://doi.org/10.5281/zenodo.18984813)
 
+> Interactive dashboard on mental health and neurology specialists per 100k in Ibero-America (2000-2026).
+> **DOI:** [10.5281/zenodo.18984813](https://doi.org/10.5281/zenodo.18984813)
 
-## Overview
+**Author:** Juan Moisés Serna Tuya | ORCID: [0000-0002-8401-8018](https://orcid.org/0000-0002-8401-8018)
 
-Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813
+## Explore the Notebook
 
-## 🌐 Live Dashboard
+Open the exploratory analysis notebook in your browser — no installation needed:
+- 🚀 **Binder**: Click the Binder badge above for an interactive session
+- ☁️ **Google Colab**: Click the Colab badge above to run in Google's cloud
 
-**[Open Interactive Dashboard](https://juanmoisesd.github.io/mental-health-specialists-iberoamerica/)**
+## Dataset
 
-## Resources
-
-| Resource | Link |
-|---|---|
-| Dataset DOI | [doi.org/10.5281/zenodo.18984813](https://doi.org/10.5281/zenodo.18984813) |
-| Author | [juanmoisesdelaserna.es](https://juanmoisesdelaserna.es) |
-| ORCID | [0000-0002-8401-8018](https://orcid.org/0000-0002-8401-8018) |
-
-## How to Cite
-
-> de la Serna Tuya, J.M. (2026). *Mental Health Specialists in Ibero-America Dashboard*. GitHub. https://github.com/juanmoisesd/mental-health-specialists-iberoamerica
-Also cite the dataset: https://doi.org/10.5281/zenodo.18984813
-
-## Author
-
-**Juan Moisés de la Serna Tuya**  
-Universidad Internacional de La Rioja (UNIR)  
-[juanmoisesdelaserna.es](https://juanmoisesdelaserna.es) · juanmoises.delaserna@unir.net  
-ORCID: [0000-0002-8401-8018](https://orcid.org/0000-0002-8401-8018)
-
-## License
-
-[CC0 1.0 Universal](LICENSE) — Public Domain Dedication.
-
-## Dataset Status
-
-| Field | Value |
-|---|---|
-| Status | 🟢 Published |
-| DOI | [10.5281/zenodo.18984813](https://doi.org/10.5281/zenodo.18984813) |
-| Last update | 2026-03-20 |
-| License | CC0 1.0 |
-
----
-
-## Citation / Cite This Repository
-
-[![ORCID](https://img.shields.io/badge/ORCID-0000--0002--8401--8018-green?logo=orcid)](https://orcid.org/0000-0002-8401-8018)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-juanmoisesdelaserna-blue?logo=linkedin)](https://www.linkedin.com/in/juanmoisesdelaserna/)
-[![Scopus](https://img.shields.io/badge/Scopus-26632846700-orange)](https://www.scopus.com/authid/detail.uri?authorId=26632846700)
-
-If you use this repository in your research, please cite:
-
-**APA 7**
-> De la Serna Tuya, J. M. (2025). *Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813* [Dataset]. GitHub. https://github.com/juanmoisesd/mental-health-specialists-iberoamerica
-
-**BibTeX**
-```bibtex
-@dataset{delaserna2025_mental_health_specialists_iber,
-  author    = {De la Serna Tuya, Juan Moisés},
-  title     = {Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813},
-  year      = {2025},
-  publisher = {GitHub},
-  url       = {https://github.com/juanmoisesd/mental-health-specialists-iberoamerica},
-  note      = {ORCID: 0000-0002-8401-8018}
-}
-```
-
-### About the Author
-
-**Juan Moisés de la Serna Tuya** | Neuroeconomista forense | IA antifraude | UNIR
-
-| ID | Link |
-|----|------|
-| ORCID | [0000-0002-8401-8018](https://orcid.org/0000-0002-8401-8018) |
-| LinkedIn | [juanmoisesdelaserna](https://www.linkedin.com/in/juanmoisesdelaserna/) |
-| Scopus | [26632846700](https://www.scopus.com/authid/detail.uri?authorId=26632846700) |
-| ResearcherID | [M-8296-2019](https://www.webofscience.com/wos/author/record/M-8296-2019) |
-| ResearchGate | [Juan_De_La_Serna_Tuya](https://www.researchgate.net/profile/Juan_De_La_Serna_Tuya) |
-
-> 290+ scientific works · 500+ DOIs · 90+ open datasets · Top 1% Academia.edu
-
-See also: [ABOUT_THE_AUTHOR.md](./ABOUT_THE_AUTHOR.md) · [CITATION_GUIDE.md](./CITATION_GUIDE.md) · [GLOSSARY.md](./GLOSSARY.md)
+Covers psychiatrists, psychologists, and neurologists per 100,000 population across 22 Iberoamerican countries, sourced from WHO, PAHO, and national ministries of health.
