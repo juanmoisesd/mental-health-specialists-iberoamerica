@@ -1,46 +1,32 @@
 {
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
-  "name": "Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813",
-  "description": "Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000-2026). DOI: 10.5281/zenodo.18984813",
+  "name": "Mental Health Specialists in Ibero-America: Open Dataset",
+  "description": "Open dataset on the availability and distribution of mental health specialists across Ibero-American countries. Based on WHO/PAHO data, 2000-2023.",
+  "identifier": "https://doi.org/10.5281/zenodo.18984813",
+  "datePublished": "2025-01-01",
+  "version": "1.0.0",
+  "license": "https://spdx.org/licenses/CC-BY-4.0",
   "url": "https://github.com/juanmoisesd/mental-health-specialists-iberoamerica",
   "codeRepository": "https://github.com/juanmoisesd/mental-health-specialists-iberoamerica",
-  "dateCreated": "2026-03-20",
-  "dateModified": "2026-03-20",
-  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
-  "version": "1.0.0",
+  "issueTracker": "https://github.com/juanmoisesd/mental-health-specialists-iberoamerica/issues",
   "author": [
     {
       "@type": "Person",
       "givenName": "Juan Moisés",
-      "familyName": "de la Serna Tuya",
-      "@id": "https://orcid.org/0000-0002-8401-8018",
-      "affiliation": {
-        "@type": "Organization",
-        "name": "Universidad Internacional de La Rioja (UNIR)"
-      },
-      "email": "juanmoises.delaserna@unir.net"
+      "familyName": "Serna Tuya",
+      "email": "jmsernatuya@gmail.com"
     }
   ],
   "keywords": [
-    "dashboard",
-    "ibero-america",
     "mental-health",
+    "psychiatry",
+    "psychology",
+    "ibero-america",
+    "latin-america",
     "open-data",
     "public-health",
-    "specialists",
-    "zenodo"
+    "health-workforce"
   ],
-  "programmingLanguage": "HTML",
-  "maintainer": [
-    {
-      "@type": "Person",
-      "givenName": "Juan Moisés",
-      "familyName": "de la Serna Tuya"
-    }
-  ],
-  "funder": {
-    "@type": "Organization",
-    "name": "Universidad Internacional de La Rioja (UNIR)"
-  }
+  "citation": "https://github.com/juanmoisesd/mental-health-specialists-iberoamerica/blob/main/CITATION.cff"
 }
