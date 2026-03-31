@@ -19,3 +19,26 @@ Open the exploratory analysis notebook in your browser — no installation neede
 ## Dataset
 
 Covers psychiatrists, psychologists, and neurologists per 100,000 population across 22 Iberoamerican countries, sourced from WHO, PAHO, and national ministries of health.
+
+
+## 📖 Citation
+
+If you use this dataset or dashboard in your research, please cite:
+
+**APA:**
+Serna Tuya, J. M. (2025). *Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000–2026)*. Zenodo. https://doi.org/10.5281/zenodo.18984813
+
+**Chicago:**
+Serna Tuya, Juan Moisés. "Interactive Dashboard: Mental Health and Neurology Specialists per 100k in Ibero-America (2000–2026)." Zenodo, 2025. https://doi.org/10.5281/zenodo.18984813.
+
+**BibTeX:**
+```bibtex
+@dataset{sernatuya_2025_mentalhealth,
+  author    = {Serna Tuya, Juan Moisés},
+  title     = {Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000–2026)},
+  year      = {2025},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.18984813},
+  url       = {https://doi.org/10.5281/zenodo.18984813}
+}
+```
