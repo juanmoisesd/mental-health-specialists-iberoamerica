@@ -1,0 +1,6 @@
+region,n_countries,avg_psychiatrists_per_100k,avg_psychologists_per_100k,avg_neurologists_per_100k,avg_health_exp_pct_gdp,avg_gdp_per_capita,avg_suicide_rate,avg_mental_burden_dalys,workforce_gap_index
+Cono Sur,5,4.76,32.62,2.24,8.96,12540,10.0,2856,0.52
+Iberia,2,9.65,7.70,3.35,10.35,26850,9.55,2515,0.82
+Caribe,2,3.35,4.90,1.55,8.90,9350,7.0,2810,0.48
+Andina,5,0.86,1.92,0.58,7.42,4600,7.66,3084,0.18
+Centroamérica,6,0.97,1.83,0.57,7.00,6633,7.45,3102,0.16
