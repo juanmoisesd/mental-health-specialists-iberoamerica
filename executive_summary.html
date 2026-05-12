@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Summary — Mental Health Specialists in Ibero-America</title>
+  <meta name="description" content="Executive analytical dashboard: Mental Health Workforce Gap Index, benchmarking, and policy simulator for Ibero-America (2000–2026).">
+  <meta name="citation_title" content="Executive Summary: Mental Health Specialists in Iberoamerica">
+  <meta name="citation_author" content="De la Serna Tuya, Juan Moisés">
+  <meta name="citation_doi" content="10.5281/zenodo.18984813">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --secondary: #2e86ab;
+      --accent: #e84855;
+      --success: #3bb273;
+      --warning: #f7b731;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #2d3748;
+      --muted: #718096;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white; padding: 2.5rem 2rem 2rem; text-align: center;
+    }
+    header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    header p { opacity: 0.85; font-size: 1rem; max-width: 700px; margin: 0 auto 1rem; }
+    .badges { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+    .badge { background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4);
+      padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; text-decoration: none; color: white; }
+    nav { background: var(--primary); padding: 0 1rem; display: flex; gap: 0; overflow-x: auto; }
+    nav a { color: rgba(255,255,255,0.8); padding: 0.75rem 1.25rem; text-decoration: none;
+      font-size: 0.85rem; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+    nav a:hover, nav a.active { color: white; border-bottom-color: var(--warning); }
+    main { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+    .lang-bar { text-align: right; margin-bottom: 1rem; }
+    .lang-bar button { background: var(--secondary); color: white; border: none; padding: 0.3rem 0.8rem;
+      border-radius: 4px; cursor: pointer; margin-left: 0.3rem; font-size: 0.8rem; }
+    .lang-bar button.active { background: var(--primary); }
+    h2 { font-size: 1.4rem; color: var(--primary); margin-bottom: 1.5rem; border-left: 4px solid var(--secondary);
+      padding-left: 0.75rem; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+    .kpi-card { background: var(--card-bg); border-radius: 12px; padding: 1.5rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 4px solid var(--secondary); text-align: center; }
+    .kpi-card.critical { border-top-color: var(--accent); }
+    .kpi-card.good { border-top-color: var(--success); }
+    .kpi-card.warning { border-top-color: var(--warning); }
+    .kpi-value { font-size: 2.2rem; font-weight: 700; color: var(--primary); }
+    .kpi-unit { font-size: 0.75rem; color: var(--muted); }
+    .kpi-label { font-size: 0.85rem; color: var(--text); margin-top: 0.5rem; font-weight: 500; }
+    .kpi-trend { font-size: 0.75rem; color: var(--success); margin-top: 0.25rem; }
+    .section { background: var(--card-bg); border-radius: 12px; padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 2rem; }
+    .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 768px) { .chart-grid { grid-template-columns: 1fr; } }
+    .chart-container { position: relative; height: 320px; }
+    #map { height: 400px; border-radius: 8px; }
+    .table-responsive { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th { background: var(--primary); color: white; padding: 0.75rem 1rem; text-align: left; }
+    td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); }
+    tr:hover td { background: #f0f7ff; }
+    .wgi-bar { height: 8px; background: var(--border); border-radius: 4px; margin-top: 4px; }
+    .wgi-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--warning), var(--success)); }
+    .simulator { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    @media (max-width: 768px) { .simulator { grid-template-columns: 1fr; } }
+    .slider-group { margin-bottom: 1.25rem; }
+    .slider-group label { font-size: 0.9rem; font-weight: 500; display: flex; justify-content: space-between; }
+    .slider-group input[type=range] { width: 100%; margin-top: 0.5rem; accent-color: var(--secondary); }
+    .sim-output { background: #f0f7ff; border-radius: 8px; padding: 1.5rem; }
+    .sim-result { margin-bottom: 1rem; }
+    .sim-result .label { font-size: 0.8rem; color: var(--muted); }
+    .sim-result .value { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+    footer { background: var(--primary); color: rgba(255,255,255,0.8); text-align: center; padding: 2rem;
+      font-size: 0.85rem; margin-top: 2rem; }
+    footer a { color: rgba(255,255,255,0.9); }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 data-i18n="title">Executive Summary — Mental Health Specialists</h1>
+  <p data-i18n="subtitle">Scientific analytical observatory for mental health workforce in Ibero-America (2000–2026). 22 countries. Longitudinal data. Evidence-based policy.</p>
+  <div class="badges">
+    <a class="badge" href="https://doi.org/10.5281/zenodo.18984813">DOI: 10.5281/zenodo.18984813</a>
+    <a class="badge" href="index.html">← Main Dashboard</a>
+    <a class="badge" href="POLICY_BRIEF.md">Policy Brief</a>
+    <a class="badge" href="METHODOLOGY.md">Methodology</a>
+    <a class="badge" href="data/specialists_data.csv">Download CSV</a>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html" data-i18n="nav_home">Home</a>
+  <a href="executive_summary.html" class="active" data-i18n="nav_executive">Executive Summary</a>
+  <a href="data.html" data-i18n="nav_data">Data</a>
+  <a href="comparisons.html" data-i18n="nav_compare">Compare</a>
+  <a href="POLICY_BRIEF.md" data-i18n="nav_policy">Policy Brief</a>
+</nav>
+
+<main>
+  <div class="lang-bar">
+    <button onclick="setLang('es')" class="active" id="btn-es">ES</button>
+    <button onclick="setLang('en')" id="btn-en">EN</button>
+    <button onclick="setLang('pt')" id="btn-pt">PT</button>
+  </div>
+
+  <!-- KPI Cards -->
+  <h2 data-i18n="kpi_title">Key Performance Indicators — Ibero-America 2022</h2>
+  <div class="kpi-grid">
+    <div class="kpi-card critical">
+      <div class="kpi-value">2.8</div>
+      <div class="kpi-unit">per 100,000 inhabitants</div>
+      <div class="kpi-label" data-i18n="kpi1">Regional Average Psychiatrists</div>
+      <div class="kpi-trend">OECD average: 12.0 → 76% gap</div>
+    </div>
+    <div class="kpi-card warning">
+      <div class="kpi-value">0.34</div>
+      <div class="kpi-unit">WGI score (0–1)</div>
+      <div class="kpi-label" data-i18n="kpi2">Workforce Gap Index</div>
+      <div class="kpi-trend">Target: ≥0.80 (OECD parity)</div>
+    </div>
+    <div class="kpi-card critical">
+      <div class="kpi-value">5</div>
+      <div class="kpi-unit">countries</div>
+      <div class="kpi-label" data-i18n="kpi3">Critical Deficit (&lt;1/100k)</div>
+      <div class="kpi-trend">Bolivia, Guatemala, Honduras, Nicaragua + 1</div>
+    </div>
+    <div class="kpi-card good">
+      <div class="kpi-value">+2.1×</div>
+      <div class="kpi-unit">growth since 2000</div>
+      <div class="kpi-label" data-i18n="kpi4">Regional Growth (26 years)</div>
+      <div class="kpi-trend">Progress, but gap persists</div>
+    </div>
+    <div class="kpi-card warning">
+      <div class="kpi-value">r=0.74</div>
+      <div class="kpi-unit">correlation coefficient</div>
+      <div class="kpi-label" data-i18n="kpi5">Health Exp. vs. Specialists</div>
+      <div class="kpi-trend">Strong predictor (p&lt;0.001)</div>
+    </div>
+    <div class="kpi-card critical">
+      <div class="kpi-value">3,100</div>
+      <div class="kpi-unit">DALYs/100k avg</div>
+      <div class="kpi-label" data-i18n="kpi6">Mental Health Burden</div>
+      <div class="kpi-trend">Highest burden, fewest specialists</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="section">
+    <h2 data-i18n="chart1_title">Workforce Gap Index by Country (2022)</h2>
+    <div class="chart-container">
+      <canvas id="wgiChart"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="section">
+      <h2 data-i18n="chart2_title">Psychiatrists vs. Health Expenditure</h2>
+      <div class="chart-container">
+        <canvas id="scatterChart"></canvas>
+      </div>
+    </div>
+    <div class="section">
+      <h2 data-i18n="chart3_title">OECD Benchmarking by Region</h2>
+      <div class="chart-container">
+        <canvas id="radarChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Regional Table -->
+  <div class="section">
+    <h2 data-i18n="table_title">Regional Summary — Workforce Gap Index</h2>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th data-i18n="col_region">Region</th>
+            <th data-i18n="col_countries">Countries</th>
+            <th data-i18n="col_psych">Psych./100k</th>
+            <th data-i18n="col_wgi">WGI Score</th>
+            <th data-i18n="col_status">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Iberia</td><td>2</td><td>9.65</td><td><div class="wgi-bar"><div class="wgi-fill" style="width:82%"></div></div>0.82</td><td>⚠️ Moderate deficit</td></tr>
+          <tr><td>Cono Sur</td><td>5</td><td>4.76</td><td><div class="wgi-bar"><div class="wgi-fill" style="width:52%"></div></div>0.52</td><td>🔴 Significant deficit</td></tr>
+          <tr><td>Caribe</td><td>2</td><td>3.35</td><td><div class="wgi-bar"><div class="wgi-fill" style="width:48%"></div></div>0.48</td><td>🔴 Significant deficit</td></tr>
+          <tr><td>Andina</td><td>5</td><td>0.86</td><td><div class="wgi-bar"><div class="wgi-fill" style="width:18%"></div></div>0.18</td><td>🚨 Critical deficit</td></tr>
+          <tr><td>Centroamérica</td><td>6</td><td>0.97</td><td><div class="wgi-bar"><div class="wgi-fill" style="width:16%"></div></div>0.16</td><td>🚨 Critical deficit</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Policy Simulator -->
+  <div class="section">
+    <h2 data-i18n="sim_title">Policy Impact Simulator</h2>
+    <p style="margin-bottom:1.5rem;color:var(--muted);font-size:0.9rem;" data-i18n="sim_desc">
+      Adjust investment scenarios to estimate impact on specialist availability and years to reach OECD parity.
+    </p>
+    <div class="simulator">
+      <div>
+        <div class="slider-group">
+          <label><span data-i18n="sim_exp">Health expenditure increase (% GDP)</span><span id="exp-val">+2%</span></label>
+          <input type="range" min="0" max="5" step="0.5" value="2" id="exp-slider" oninput="updateSim()">
+        </div>
+        <div class="slider-group">
+          <label><span data-i18n="sim_training">Training programs (psychiatry residencies/year)</span><span id="train-val">50</span></label>
+          <input type="range" min="0" max="200" step="10" value="50" id="train-slider" oninput="updateSim()">
+        </div>
+        <div class="slider-group">
+          <label><span data-i18n="sim_retention">Specialist retention policy (% improvement)</span><span id="ret-val">20%</span></label>
+          <input type="range" min="0" max="50" step="5" value="20" id="ret-slider" oninput="updateSim()">
+        </div>
+        <div class="slider-group">
+          <label><span data-i18n="sim_country">Target country/region</span></label>
+          <select id="sim-country" onchange="updateSim()" style="width:100%;padding:0.5rem;margin-top:0.5rem;border:1px solid var(--border);border-radius:4px;">
+            <option value="latam">All Ibero-America (avg)</option>
+            <option value="ca">Central America</option>
+            <option value="andina">Andina Region</option>
+            <option value="caribe">Caribe</option>
+            <option value="conosur">Cono Sur</option>
+          </select>
+        </div>
+      </div>
+      <div class="sim-output">
+        <h3 style="margin-bottom:1rem;color:var(--primary);font-size:1rem;" data-i18n="sim_results">Projected Results (10-year horizon)</h3>
+        <div class="sim-result">
+          <div class="label" data-i18n="sim_r1">Projected psychiatrists/100k (2035)</div>
+          <div class="value" id="proj-psych">4.2</div>
+        </div>
+        <div class="sim-result">
+          <div class="label" data-i18n="sim_r2">Years to OECD parity</div>
+          <div class="value" id="proj-years">38 years</div>
+        </div>
+        <div class="sim-result">
+          <div class="label" data-i18n="sim_r3">WGI improvement</div>
+          <div class="value" id="proj-wgi">0.34 → 0.41</div>
+        </div>
+        <div class="sim-result">
+          <div class="label" data-i18n="sim_r4">Additional specialists trained</div>
+          <div class="value" id="proj-new">+500</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p><strong>Mental Health Specialists in Iberoamerica</strong> |
+    <a href="https://doi.org/10.5281/zenodo.18984813">DOI: 10.5281/zenodo.18984813</a> |
+    <a href="https://orcid.org/0000-0002-8401-8018">ORCID</a> |
+    <a href="https://github.com/juanmoisesd/mental-health-specialists-iberoamerica">GitHub</a>
+  </p>
+  <p style="margin-top:0.5rem;font-size:0.75rem;">CC BY 4.0 · Juan Moisés De la Serna Tuya · 2026</p>
+</footer>
+
+<script>
+// i18n
+const i18n = {
+  es: { title: 'Resumen Ejecutivo — Especialistas en Salud Mental', subtitle: 'Observatorio científico-analítico de la fuerza laboral en salud mental de Iberoamérica (2000–2026). 22 países. Datos longitudinales. Política basada en evidencia.', kpi1: 'Psiquiatras Promedio Regional', kpi2: 'Índice de Brecha de Fuerza Laboral', kpi3: 'Déficit Crítico (<1/100k)', kpi4: 'Crecimiento Regional (26 años)', kpi5: 'Gasto Sanitario vs. Especialistas', kpi6: 'Carga de Salud Mental', nav_home: 'Inicio', nav_executive: 'Resumen Ejecutivo', nav_data: 'Datos', nav_compare: 'Comparar', nav_policy: 'Política', sim_title: 'Simulador de Impacto de Política', sim_desc: 'Ajuste escenarios de inversión para estimar el impacto en disponibilidad de especialistas.', sim_exp: 'Aumento del gasto sanitario (% PIB)', sim_training: 'Programas de formación (residencias/año)', sim_retention: 'Política de retención (% mejora)', sim_country: 'País/región objetivo', sim_results: 'Resultados proyectados (horizonte 10 años)', sim_r1: 'Psiquiatras/100k proyectados (2035)', sim_r2: 'Años para paridad OCDE', sim_r3: 'Mejora del Índice WGI', sim_r4: 'Especialistas adicionales formados', kpi_title: 'Indicadores Clave — Iberoamérica 2022', chart1_title: 'Índice de Brecha (WGI) por País (2022)', chart2_title: 'Psiquiatras vs. Gasto Sanitario', chart3_title: 'Benchmarking OCDE por Región', table_title: 'Resumen Regional — Índice de Brecha de Fuerza Laboral', col_region: 'Región', col_countries: 'Países', col_psych: 'Psiq./100k', col_wgi: 'Puntuación WGI', col_status: 'Estado' },
+  en: { title: 'Executive Summary — Mental Health Specialists', subtitle: 'Scientific analytical observatory for mental health workforce in Ibero-America (2000–2026). 22 countries. Longitudinal data. Evidence-based policy.', kpi1: 'Regional Average Psychiatrists', kpi2: 'Workforce Gap Index', kpi3: 'Critical Deficit (<1/100k)', kpi4: 'Regional Growth (26 years)', kpi5: 'Health Exp. vs. Specialists', kpi6: 'Mental Health Burden', nav_home: 'Home', nav_executive: 'Executive Summary', nav_data: 'Data', nav_compare: 'Compare', nav_policy: 'Policy Brief', sim_title: 'Policy Impact Simulator', sim_desc: 'Adjust investment scenarios to estimate impact on specialist availability and years to reach OECD parity.', sim_exp: 'Health expenditure increase (% GDP)', sim_training: 'Training programs (psychiatry residencies/year)', sim_retention: 'Specialist retention policy (% improvement)', sim_country: 'Target country/region', sim_results: 'Projected Results (10-year horizon)', sim_r1: 'Projected psychiatrists/100k (2035)', sim_r2: 'Years to OECD parity', sim_r3: 'WGI improvement', sim_r4: 'Additional specialists trained', kpi_title: 'Key Performance Indicators — Ibero-America 2022', chart1_title: 'Workforce Gap Index (WGI) by Country (2022)', chart2_title: 'Psychiatrists vs. Health Expenditure', chart3_title: 'OECD Benchmarking by Region', table_title: 'Regional Summary — Workforce Gap Index', col_region: 'Region', col_countries: 'Countries', col_psych: 'Psych./100k', col_wgi: 'WGI Score', col_status: 'Status' },
+  pt: { title: 'Resumo Executivo — Especialistas em Saúde Mental', subtitle: 'Observatório científico-analítico da força de trabalho em saúde mental da Ibero-América (2000–2026). 22 países. Dados longitudinais. Política baseada em evidências.', kpi1: 'Média Regional de Psiquiatras', kpi2: 'Índice de Lacuna de Força de Trabalho', kpi3: 'Déficit Crítico (<1/100k)', kpi4: 'Crescimento Regional (26 anos)', kpi5: 'Despesa Saúde vs. Especialistas', kpi6: 'Carga de Saúde Mental', nav_home: 'Início', nav_executive: 'Resumo Executivo', nav_data: 'Dados', nav_compare: 'Comparar', nav_policy: 'Política', sim_title: 'Simulador de Impacto de Política', sim_desc: 'Ajuste cenários de investimento para estimar o impacto na disponibilidade de especialistas.', sim_exp: 'Aumento do gasto em saúde (% PIB)', sim_training: 'Programas de formação (residências/ano)', sim_retention: 'Política de retenção de especialistas (% melhoria)', sim_country: 'País/região alvo', sim_results: 'Resultados projetados (horizonte de 10 anos)', sim_r1: 'Psiquiatras/100k projetados (2035)', sim_r2: 'Anos para paridade OCDE', sim_r3: 'Melhoria do Índice WGI', sim_r4: 'Especialistas adicionais formados', kpi_title: 'Indicadores Chave — Ibero-América 2022', chart1_title: 'Índice de Lacuna (WGI) por País (2022)', chart2_title: 'Psiquiatras vs. Despesa em Saúde', chart3_title: 'Benchmarking OCDE por Região', table_title: 'Resumo Regional — Índice de Lacuna de Força de Trabalho', col_region: 'Região', col_countries: 'Países', col_psych: 'Psiq./100k', col_wgi: 'Pontuação WGI', col_status: 'Status' }
+};
+let currentLang = 'es';
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[lang][key]) el.textContent = i18n[lang][key];
+  });
+  ['es','en','pt'].forEach(l => document.getElementById('btn-'+l).classList.toggle('active', l===lang));
+}
+
+// Data
+const countries = ['Argentina','Bolivia','Brasil','Chile','Colombia','Costa Rica','Cuba','Ecuador','El Salvador','España','Guatemala','Honduras','México','Nicaragua','Panamá','Paraguay','Perú','Portugal','Rep. Dom.','Uruguay','Venezuela'];
+const wgi = [0.65,0.04,0.27,0.34,0.12,0.23,0.48,0.07,0.05,0.92,0.03,0.03,0.13,0.03,0.15,0.05,0.07,0.69,0.08,0.51,0.08];
+const psychiatrists = [7.8,0.4,3.2,4.1,1.4,2.8,5.8,0.8,0.6,11.0,0.3,0.3,1.6,0.4,1.8,0.6,0.8,8.3,0.9,6.1,0.9];
+const healthExp = [9.6,7.3,9.9,9.1,7.7,7.6,11.1,8.3,7.2,10.7,5.4,7.7,5.5,8.8,7.3,6.8,5.1,10.0,6.7,9.4,1.7];
+
+// WGI Chart
+const wgiCtx = document.getElementById('wgiChart').getContext('2d');
+new Chart(wgiCtx, {
+  type: 'bar',
+  data: {
+    labels: countries,
+    datasets: [{
+      label: 'WGI Score',
+      data: wgi,
+      backgroundColor: wgi.map(v => v >= 0.6 ? 'rgba(59,178,115,0.7)' : v >= 0.3 ? 'rgba(247,183,49,0.7)' : 'rgba(232,72,85,0.7)'),
+      borderColor: wgi.map(v => v >= 0.6 ? '#3bb273' : v >= 0.3 ? '#f7b731' : '#e84855'),
+      borderWidth: 1
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => 'WGI: ' + ctx.raw.toFixed(2) + ' (OECD target: 1.0)' } } },
+    scales: { x: { max: 1, title: { display: true, text: 'WGI Score (0=no specialists, 1=OECD parity)' } } }
+  }
+});
+
+// Scatter Chart
+const scCtx = document.getElementById('scatterChart').getContext('2d');
+new Chart(scCtx, {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Country',
+      data: countries.map((c,i) => ({ x: healthExp[i], y: psychiatrists[i], label: c })),
+      backgroundColor: 'rgba(46,134,171,0.6)', pointRadius: 7,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { tooltip: { callbacks: { label: ctx => ctx.raw.label + ': ' + ctx.raw.y + ' psych., ' + ctx.raw.x + '% GDP' } } },
+    scales: {
+      x: { title: { display: true, text: 'Health Expenditure (% GDP)' } },
+      y: { title: { display: true, text: 'Psychiatrists per 100,000' } }
+    }
+  }
+});
+
+// Radar Chart
+const rCtx = document.getElementById('radarChart').getContext('2d');
+new Chart(rCtx, {
+  type: 'radar',
+  data: {
+    labels: ['Psychiatrists', 'Psychologists', 'Neurologists', 'MH Nurses'],
+    datasets: [
+      { label: 'OECD Average', data: [100,100,100,100], borderColor: '#3bb273', backgroundColor: 'rgba(59,178,115,0.1)', borderWidth: 2 },
+      { label: 'Iberia', data: [80,43,58,69], borderColor: '#2e86ab', backgroundColor: 'rgba(46,134,171,0.15)', borderWidth: 2 },
+      { label: 'Cono Sur', data: [40,55,37,46], borderColor: '#f7b731', backgroundColor: 'rgba(247,183,49,0.15)', borderWidth: 2 },
+      { label: 'Centroamérica', data: [8,10,10,6], borderColor: '#e84855', backgroundColor: 'rgba(232,72,85,0.15)', borderWidth: 2 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: { r: { min: 0, max: 100, ticks: { display: false }, pointLabels: { font: { size: 12 } } } }
+  }
+});
+
+// Simulator
+const baseVals = { latam: 2.8, ca: 0.97, andina: 0.86, caribe: 3.35, conosur: 4.76 };
+const baseWGI = { latam: 0.34, ca: 0.16, andina: 0.18, caribe: 0.48, conosur: 0.52 };
+function updateSim() {
+  const expInc = parseFloat(document.getElementById('exp-slider').value);
+  const trainN = parseInt(document.getElementById('train-slider').value);
+  const retPct = parseInt(document.getElementById('ret-slider').value);
+  const country = document.getElementById('sim-country').value;
+  document.getElementById('exp-val').textContent = '+' + expInc + '%';
+  document.getElementById('train-val').textContent = trainN;
+  document.getElementById('ret-val').textContent = retPct + '%';
+  const base = baseVals[country] || 2.8;
+  const wgiBase = baseWGI[country] || 0.34;
+  const growth = expInc * 0.3 + (trainN / 200) * 1.5 + (retPct / 50) * 0.5;
+  const projected = Math.min((base + growth).toFixed(1), 12);
+  const wgiNew = Math.min((wgiBase + growth * 0.08).toFixed(2), 1.0);
+  const yearsToOECD = projected >= 12 ? 0 : Math.round((12 - projected) / (growth * 0.15 + 0.05));
+  const newSpecs = Math.round(trainN * 10 * (1 + retPct/100));
+  document.getElementById('proj-psych').textContent = projected;
+  document.getElementById('proj-years').textContent = yearsToOECD > 100 ? '>100 years' : yearsToOECD + ' years';
+  document.getElementById('proj-wgi').textContent = wgiBase + ' → ' + wgiNew;
+  document.getElementById('proj-new').textContent = '+' + newSpecs.toLocaleString();
+}
+updateSim();
+</script>
+</body>
+</html>
