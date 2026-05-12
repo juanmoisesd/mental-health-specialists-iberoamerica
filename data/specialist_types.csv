@@ -1,0 +1,5 @@
+specialist_type,description_en,description_es,oecd_avg_per_100k,latam_avg_per_100k,gap_ratio
+psychiatrists,Medical doctors specialized in mental health diagnosis and treatment,Médicos especializados en diagnóstico y tratamiento de salud mental,12.0,2.8,0.23
+psychologists,Health professionals providing psychological assessment and therapy,Profesionales que ofrecen evaluación psicológica y terapia,18.0,8.4,0.47
+neurologists,Medical doctors specialized in nervous system disorders,Médicos especializados en trastornos del sistema nervioso,6.0,1.2,0.20
+mental_health_nurses,Nurses specialized in mental health care,Enfermeras especializadas en atención de salud mental,32.0,5.8,0.18
