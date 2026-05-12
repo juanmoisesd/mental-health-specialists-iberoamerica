@@ -8,34 +8,34 @@
 > Interactive dashboard on mental health and neurology specialists per 100k in Ibero-America (2000-2026).
 > **DOI:** [10.5281/zenodo.18984813](https://doi.org/10.5281/zenodo.18984813)
 
-**Author:** Juan Moisés Serna Tuya | ORCID: [0000-0002-8401-8018](https://orcid.org/0000-0002-8401-8018)
+**Author:** Juan MoisÃ©s Serna Tuya | ORCID: [0000-0002-8401-8018](https://orcid.org/0000-0002-8401-8018)
 
 ## Explore the Notebook
 
-Open the exploratory analysis notebook in your browser — no installation needed:
-- 🚀 **Binder**: Click the Binder badge above for an interactive session
-- ☁️ **Google Colab**: Click the Colab badge above to run in Google's cloud
+Open the exploratory analysis notebook in your browser â no installation needed:
+- ð **Binder**: Click the Binder badge above for an interactive session
+- âï¸ **Google Colab**: Click the Colab badge above to run in Google's cloud
 
 ## Dataset
 
 Covers psychiatrists, psychologists, and neurologists per 100,000 population across 22 Iberoamerican countries, sourced from WHO, PAHO, and national ministries of health.
 
 
-## 📖 Citation
+## ð Citation
 
 If you use this dataset or dashboard in your research, please cite:
 
 **APA:**
-Serna Tuya, J. M. (2025). *Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000–2026)*. Zenodo. https://doi.org/10.5281/zenodo.18984813
+Serna Tuya, J. M. (2025). *Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000â2026)*. Zenodo. https://doi.org/10.5281/zenodo.18984813
 
 **Chicago:**
-Serna Tuya, Juan Moisés. "Interactive Dashboard: Mental Health and Neurology Specialists per 100k in Ibero-America (2000–2026)." Zenodo, 2025. https://doi.org/10.5281/zenodo.18984813.
+Serna Tuya, Juan MoisÃ©s. "Interactive Dashboard: Mental Health and Neurology Specialists per 100k in Ibero-America (2000â2026)." Zenodo, 2025. https://doi.org/10.5281/zenodo.18984813.
 
 **BibTeX:**
 ```bibtex
 @dataset{sernatuya_2025_mentalhealth,
-  author    = {Serna Tuya, Juan Moisés},
-  title     = {Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000–2026)},
+  author    = {Serna Tuya, Juan MoisÃ©s},
+  title     = {Interactive dashboard: Mental health and neurology specialists per 100k in Ibero-America (2000â2026)},
   year      = {2025},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.18984813},
@@ -68,3 +68,34 @@ To use the resources in this repository, clone the project and ensure you have t
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+
+---
+
+## 📊 Advanced Analytical Resources (v2.0 — May 2026)
+
+| Resource | Description | Format |
+|----------|-------------|--------|
+| [📈 Executive Summary Dashboard](executive_summary.html) | KPI cards, WGI benchmarking, policy simulator, multilingual (ES/EN/PT) | HTML |
+| [🗒️ Advanced Analysis Notebook](notebooks/02_advanced_analysis.ipynb) | WGI calculation, clustering, ARIMA forecasting, burden analysis | Jupyter |
+| [📋 Policy Brief](POLICY_BRIEF.md) | Evidence-based recommendations for decision makers | Markdown |
+| [🔬 Methodology](METHODOLOGY.md) | Detailed methods, WGI formula, data sources, limitations | Markdown |
+| [🗺️ Roadmap](ROADMAP.md) | Completed milestones and planned features | Markdown |
+| [📚 Data Sources](DATA_SOURCES.md) | Complete inventory of data sources with quality assessment | Markdown |
+
+### Central Dataset
+| File | Description | Records |
+|------|-------------|---------|
+| [data/specialists_data.csv](data/specialists_data.csv) | Core: all specialists by country-year | 35+ records, 22 countries |
+| [data/external_indicators.csv](data/external_indicators.csv) | GDP, GINI, suicide rates, DALYs | 22 countries |
+| [data/regional_summary.csv](data/regional_summary.csv) | Regional aggregates + WGI scores | 5 regions |
+| [data/specialist_types.csv](data/specialist_types.csv) | Specialist type definitions + OECD benchmarks | 4 types |
+
+### Key Finding: Workforce Gap Index (WGI)
+The **Workforce Gap Index** (composite score 0-1 vs OECD parity) reveals critical disparities:
+- Critical deficit (WGI < 0.2): Central America and Andean region
+- Significant deficit (WGI 0.2-0.6): Cono Sur and Caribbean
+- Moderate deficit (WGI > 0.6): Iberian Peninsula
+
+Regional average: 2.8 psychiatrists/100k vs OECD average of 12.0 = 76% gap.
+
